@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="05142022-1"
+UPDATE_DATE="05252022-1"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -30,7 +30,7 @@ if [ ! -f "/home/ark/.config/.update07152021" ]; then
 	if [ -f "/home/ark/arkosupdate07152021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate07152021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -55,7 +55,7 @@ if [ ! -f "/home/ark/.config/.update08092021" ]; then
 	if [ -f "/home/ark/arkosupdate08092021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate08092021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate08092021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -79,7 +79,7 @@ if [ ! -f "/home/ark/.config/.update09052021" ]; then
 	if [ -f "/home/ark/arkosupdate09052021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate09052021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate09052021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -103,7 +103,7 @@ if [ ! -f "/home/ark/.config/.update09062021" ]; then
 	if [ -f "/home/ark/arkosupdate09062021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate09062021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -127,7 +127,7 @@ if [ ! -f "/home/ark/.config/.update10212021" ]; then
 	if [ -f "/home/ark/arkosupdate10212021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate10212021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -151,7 +151,7 @@ if [ ! -f "/home/ark/.config/.update10262021" ]; then
 	if [ -f "/home/ark/arkosupdate10262021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate10262021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate10262021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -179,7 +179,7 @@ if [ ! -f "/home/ark/.config/.update11172021" ]; then
 		sudo chmod 777 /usr/bin/emulationstation/emulationstation
 		sudo rm -v /usr/bin/emulationstation/emulationstation.351v | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate11172021.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -208,7 +208,7 @@ if [ ! -f "/home/ark/.config/.update01132022" ]; then
 	if [ -f "/home/ark/arkosupdate01132022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate01132022.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -232,7 +232,7 @@ if [ ! -f "/home/ark/.config/.update01142022" ]; then
 	if [ -f "/home/ark/arkosupdate01142022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate01142022.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate01142022.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -257,7 +257,7 @@ if [ ! -f "/home/ark/.config/.update02142022" ]; then
 	if [ -f "/home/ark/arkosupdate02142022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate02142022.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate02142022.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -281,7 +281,7 @@ if [ ! -f "/home/ark/.config/.update05142022" ]; then
 	if [ -f "/home/ark/arkosupdate05142022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate05142022.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate05142022.zip | tee -a "$LOG_FILE"
-	else 
+	else
 		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 		sleep 3
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
@@ -302,22 +302,45 @@ if [ ! -f "/home/ark/.config/.update05142022" ]; then
 	touch "/home/ark/.config/.update05142022"
 fi
 
+if [ ! -f "/home/ark/.config/.update05252022" ]; then
+
+	printf "\nfix playstation typo, scripts, add n64hacks and capcom\n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/05252022/arkosupdate05252022.zip -O /home/ark/arkosupdate05252022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate05252022.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate05252022.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate05252022.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate05252022.zip | tee -a "$LOG_FILE"
+	else
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+
+	printf "\nUpdate boot text to mention wuMMLe contributions \n" | tee -a "$LOG_FILE"
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update05252022"
+fi
+
 if [ ! -f "$UPDATE_DONE" ]; then
 
-	
+
 
 	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
 	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
-   
+	printf "\nUpdate boot text to mention wuMMLe contributions \n" | tee -a "$LOG_FILE"
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+
 	touch "$UPDATE_DONE"
 	rm -v -- "$0" | tee -a "$LOG_FILE"
 	printf "\033c" >> /dev/tty1
 	msgbox "Updates have been completed.  System will now restart after you hit the A button to continue.  If the system doesn't restart after pressing A, just restart the system manually."
 	echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
 	sudo reboot
-	exit 187	
+	exit 187
 fi
