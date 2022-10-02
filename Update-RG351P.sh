@@ -335,10 +335,10 @@ fi
 if [ ! -f "/home/ark/.config/.update10022022" ]; then
 
 	printf "\fix save states in rumble cores\n" | tee -a "$LOG_FILE"
-	cp /home/ark/.config/retroarch/flycast_libretro.info  /home/ark/.config/retroarch/flycast_rumble_libretro.info 
-	cp /home/ark/.config/retroarch/mgba_libretro.info  /home/ark/.config/retroarch/mgba_rumble_libretro.info
-	cp /home/ark/.config/retroarch32/flycast_libretro.info  /home/ark/.config/retroarch32/flycast32_rumble_libretro.info
-	cp /home/ark/.config/retroarch32/pcsx_rearmed_libretro.info  /home/ark/.config/retroarch32/pcsx_rearmed_rumble_libretro.info
+	cp /home/ark/.config/retroarch/cores/flycast_libretro.info  /home/ark/.config/retroarch/cores/flycast_rumble_libretro.info 
+	cp /home/ark/.config/retroarch/cores/mgba_libretro.info  /home/ark/.config/retroarch/cores/mgba_rumble_libretro.info
+	cp /home/ark/.config/retroarch32/cores/flycast_libretro.info  /home/ark/.config/retroarch32/cores/flycast32_rumble_libretro.info
+	cp /home/ark/.config/retroarch32/cores/pcsx_rearmed_libretro.info  /home/ark/.config/retroarch32/cores/pcsx_rearmed_rumble_libretro.info
 	
 	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
 	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
