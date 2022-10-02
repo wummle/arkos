@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="10022022-1"
+UPDATE_DATE="06062022-1"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -329,25 +329,6 @@ if [ ! -f "/home/ark/.config/.update06062022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update06062022"
-fi
-
-
-if [ ! -f "/home/ark/.config/.update10022022" ]; then
-
-	printf "\fix save states in rumble cores\n" | tee -a "$LOG_FILE"
-	sudo cp /home/ark/.config/retroarch/cores/flycast_libretro.info  /home/ark/.config/retroarch/cores/flycast_rumble_libretro.info 
-	sudo cp /home/ark/.config/retroarch/cores/mgba_libretro.info  /home/ark/.config/retroarch/cores/mgba_rumble_libretro.info
-	sudo cp /home/ark/.config/retroarch32/cores/flycast_libretro.info  /home/ark/.config/retroarch32/cores/flycast32_rumble_libretro.info
-	sudo cp /home/ark/.config/retroarch32/cores/pcsx_rearmed_libretro.info  /home/ark/.config/retroarch32/cores/pcsx_rearmed_rumble_libretro.info
-	
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
-
-	touch "/home/ark/.config/.update10022022"
 fi
 
 if [ ! -f "$UPDATE_DONE" ]; then
