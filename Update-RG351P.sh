@@ -415,6 +415,7 @@ if [ ! -f "/home/ark/.config/.update12092022" ]; then
 		exit 1
 	fi
 	
+    sudo chmod ugo+rwx /opt/ppsspp/PPSSPPSDL
 	  
 	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
 	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
@@ -440,6 +441,8 @@ if [ ! -f "/home/ark/.config/.update12102022" ]; then
 		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
 		exit 1
 	fi
+	
+    sudo chmod ugo+rwx /opt/retroarch/bin/*
 	
     printf "\nClean up some old unneeded files in the system\n" | tee -a "$LOG_FILE"
     sudo rm -rfv /var/cache/* | tee -a "$LOG_FILE"
