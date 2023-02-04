@@ -485,6 +485,34 @@ if [ ! -f "/home/ark/.config/.update12202022" ]; then
 	touch "/home/ark/.config/.update12202022"
 fi
 
+
+if [ ! -f "/home/ark/.config/.update02022023" ]; then
+
+	printf "\nUpdate PPSSPP to 1.14.4\n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02022023/arkosupdate02022023.zip -O /home/ark/arkosupdate02022023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02022023.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate02022023.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate02022023.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate02022023.zip | tee -a "$LOG_FILE"
+	else 
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+	
+    sudo chmod ugo+rwx /opt/ppsspp/PPSSPPSDL
+	  
+	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update02022023"
+fi
+
+
 if [ ! -f "$UPDATE_DONE" ]; then
 
 	
