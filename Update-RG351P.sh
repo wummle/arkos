@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="04052023"
+UPDATE_DATE="08252023"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -647,14 +647,297 @@ if [ ! -f "/home/ark/.config/.update04052023" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update08252023" ]; then
+
+	printf "\nquicknes, fceumm, supafaust, 32bit gpsp, A5200, puae2021, Gearsystem, picodrive, gearcoleco, coolCV, fbneo-neogeocd, Fake08, Arduboy, vic20, microvision, mame2003_plus to arcade, cap32 update, ECWolf update, retroarch 1.15.0 performance, retroarch filters, (Add extensions for C64, Genesis, AmigaCD32, PC98, AmstradCPC and movie player), OpenBOR update, PPSSPP update, (mgba, 3DO and virtualboy default to performance mode), SDL 2.0.28.2\n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/08252023/arkosupdate08252023.zip -O /home/ark/arkosupdate08252023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate08252023.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate08252023.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate08252023.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate08252023.zip | tee -a "$LOG_FILE"
+	else 
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+
+    printf "\n Note: All Added systems in this list have been hardcoded into this archived es_systems.cfg that will replace the old es_systems.cfg.  This is because the scripted injection method severely broke the contents of the file for reasons unknown (this usually doesn't happen), so this process has instead been performed manually to ensure a working configuration. \n" | tee -a "$LOG_FILE"
+    printf "\n Most if not all updates here have been brought in from other updates provided by (and thanks to) christianhaitian and all who contributed \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---CORES--- \n" | tee -a "$LOG_FILE"
+    printf "\n Update ECWolf to 1.4.1 and add mods support \n" | tee -a "$LOG_FILE"
+    printf "\n Add quicknes core for NES and Famicom Disk System \n" | tee -a "$LOG_FILE"
+    printf "\n Add support for fceumm to Famicom system \n" | tee -a "$LOG_FILE"
+    printf "\n Add supafaust core for SNES \n" | tee -a "$LOG_FILE"
+    printf "\n Add 32bit gpsp core for GBA \n" | tee -a "$LOG_FILE"
+    printf "\n Add A5200 libretro core as additional core for Atari 5200 \n" | tee -a "$LOG_FILE"
+    printf "\n Add puae2021 libretro core for Amiga \n" | tee -a "$LOG_FILE"
+    printf "\n Add Gearsystem and picodrive cores for Sega Master System \n" | tee -a "$LOG_FILE"
+    printf "\n Add Gearsystem core for Game Gear \n" | tee -a "$LOG_FILE"
+    printf "\n Add gearcoleco libretro core for colecovision \n"
+    printf "\n Add fbneo as optional core for NeoGeo CD \n" | tee -a "$LOG_FILE"
+    printf "\n Add coolCV core for colecovision \n" | tee -a "$LOG_FILE"
+    printf "\n Add Fake08 emulator for PICO-8 \n" | tee -a "$LOG_FILE"
+	  printf "\n Add widescreen mode support for mupen64plus-glide64mk2 \n" | tee -a "$LOG_FILE"
+    printf "\n Update cap32 core for Amstrad CPC and GX4000 \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---RETROARCH--- \n" | tee -a "$LOG_FILE"
+    printf "\n Rebuild retroarch and retroarch32 v1.15.0 to resolve microstutter issues \n" | tee -a "$LOG_FILE"
+    printf "\n Add retroarch video filters \n" | tee -a "$LOG_FILE"
+    printf "\n Add retroarch audio filters \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---EXTENSIONS--- \n" | tee -a "$LOG_FILE"
+    printf "\n Add prg, d71, d81, nib, tap, and vsf support for C64 \n" | tee -a "$LOG_FILE"
+    printf "\n Add sgd support for Genesis and MD \n" | tee -a "$LOG_FILE"
+    printf "\n Add chd support for Amiga CD32 \n" | tee -a "$LOG_FILE"
+    printf "\n Add .cmd extension support for PC98 \n" | tee -a "$LOG_FILE"
+    printf "\n Add .mov extension for video player \n" | tee -a "$LOG_FILE"
+    printf "\n Add cpc and 7z support for Amstrad CPC \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---STANDALONE EMULATOR UPDATES--- \n" | tee -a "$LOG_FILE"
+	  printf "\n Add GLideN64 plugin for mupen64plus standalone to ES \n" | tee -a "$LOG_FILE"
+    printf "\n Update OpenBOR \n" | tee -a "$LOG_FILE"
+    printf "\n Update PPSSPPSDL to v1.15.3-26 \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---THEMES--- \n" | tee -a "$LOG_FILE"
+    printf "\n Update NesBox Theme \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---TOOLS--- \n" | tee -a "$LOG_FILE"
+    printf "\n Add tool to remove ._ Mac files \n" | tee -a "$LOG_FILE"
+
+    printf "\n ---ADDITIONAL UPDATES AND CHANGES FOR THIS UPDATE--- \n" | tee -a "$LOG_FILE"
+
+
+    printf "\n Set permissions on es_systems.cfg in case they were altered \n" | tee -a "$LOG_FILE"
+      sudo chmod ugo+rwx /etc/emulationstation/es_systems.cfg
+
+    printf "\n Set permissions on ecwolf.sh in case they were altered \n" | tee -a "$LOG_FILE"
+      sudo chmod ugo+rwx /usr/local/bin/ecwolf.sh
+
+    printf "\n Set permissions on vice_xvic_libretro core in case they were altered \n" | tee -a "$LOG_FILE"
+      sudo chmod ugo+rwx /home/ark/.config/retroarch/vice_xvic_libretro.so
+
+
+    printf "\n Change mednafen_vb options cpu emulation to fast \n" | tee -a "$LOG_FILE"
+      if [[ ! -z $(cat /home/ark/.config/retroarch/retroarch-core-options.cfg | grep vb_cpu_emulation) ]]; then
+        sed -i '/vb_cpu_emulation \= /c\vb_cpu_emulation \= \"fast\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+      else
+        printf '\nvb_cpu_emulation = "fast"' | tee -a /home/ark/.config/retroarch/retroarch-core-options.cfg
+      fi
+    printf '\nvb_cpu_emulation = "fast"' | tee -a /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+
+    printf "\n Add video filters and set default filters' paths for retroarch and retroarch32 \n" | tee -a "$LOG_FILE"
+      sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch\/filters\/video\"" /home/ark/.config/retroarch/retroarch.cfg && sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch\/filters\/video\"" /home/ark/.config/retroarch/retroarch.cfg.bak && sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch32\/filters\/video\"" /home/ark/.config/retroarch32/retroarch.cfg && sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch32\/filters\/video\"" /home/ark/.config/retroarch32/retroarch.cfg.bak
+      sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch32\/filters\/video\"" /home/ark/.config/retroarch/config/Atari800/retroarch_5200.cfg && sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch32\/filters\/video\"" /home/ark/.config/retroarch/config/Atari800/retroarch_A800.cfg && sed -i "/video_filter_dir \= \"default\"/c\video_filter_dir \= \"\/home\/ark\/.config\/retroarch32\/filters\/video\"" /home/ark/.config/retroarch/config/Atari800/retroarch_XEGS.cfg
+
+    printf "\n Update audio filters directory in retroarch and retroarch32 configs \n" | tee -a "$LOG_FILE"
+      sed -i "/audio_filter_dir = \"/c\\audio_filter_dir = \"~\/.config\/retroarch\/filters\/audio\"" /home/ark/.config/retroarch/retroarch.cfg
+      sed -i "/audio_filter_dir = \"/c\\audio_filter_dir = \"~\/.config\/retroarch\/filters\/audio\"" /home/ark/.config/retroarch/retroarch.cfg.bak
+      sed -i "/audio_filter_dir = \"/c\\audio_filter_dir = \"~\/.config\/retroarch32\/filters\/audio\"" /home/ark/.config/retroarch32/retroarch.cfg
+      sed -i "/audio_filter_dir = \"/c\\audio_filter_dir = \"~\/.config\/retroarch32\/filters\/audio\"" /home/ark/.config/retroarch32/retroarch.cfg.bak
+
+
+    printf "\n Force the use of older SDL2 for hypseus due to audio sync issue \n" | tee -a "$LOG_FILE"
+      if test -z "$(cat /usr/local/bin/daphne.sh | grep -i 'libSDL2-2.0.so.0.1')"
+      then
+          sudo sed -i '/\.\/hypseus/s//LD_PRELOAD=\/usr\/lib\/aarch64-linux-gnu\/libSDL2-2.0.so.0.14.1 .\/hypseus/' /usr/local/bin/daphne.sh
+      fi
+
+
+    printf "\n Added Arduboy \n" | tee -a "$LOG_FILE"
+      mkdir -v /roms/arduboy | tee -a "$LOG_FILE"
+
+
+    printf "\n Duckstation optimization \n" | tee -a "$LOG_FILE"
+      if test -z "$(grep 'record' /usr/local/bin/perfmax | tr -d '\0')"
+      then
+        sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ $2 == \"duckstation\" \]\] || [[ "$2" == *\"record\"* ]]/' /usr/local/bin/perfmax
+        sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ $2 == \"duckstation\" \]\] || [[ "$2" == *\"record\"* ]]/' /usr/local/bin/perfmax.pic
+        sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ $2 == \"duckstation\" \]\] || [[ "$2" == *\"record\"* ]]/' /usr/local/bin/perfmax.asc
+      fi
+
+
+    printf "\n Add mame2003_plus to arcade, cps1, cps2, and cps3 \n" | tee -a "$LOG_FILE"
+      sed -i '/mame2003-plus_skip_disclaimer \=/c\mame2003-plus_skip_disclaimer \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+      sed -i '/mame2003-plus_skip_disclaimer \=/c\mame2003-plus_skip_disclaimer \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      sed -i '/mame2003-plus_skip_warnings \=/c\mame2003-plus_skip_warnings \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+      sed -i '/mame2003-plus_skip_warnings \=/c\mame2003-plus_skip_warnings \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      sudo sed -i 's/exfat defaults,auto,umask=000,noatime 0 0/exfat defaults,auto,umask=000,uid=1002,gid=1002,noatime 0 0/' /etc/fstab
+      sudo sed -i 's/exfat umask=0000,iocharset=utf8,noatime 0 0/exfat umask=0000,iocharset=utf8,uid=1002,gid=1002,noatime 0 0/' /etc/fstab
+
+
+    printf "\n Duckstation update \n" | tee -a "$LOG_FILE"
+		if [ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-event-joystick" ]; then
+		  printf "\n Copy correct duckstation binary per device \n" | tee -a "$LOG_FILE"
+		  sudo rm -fv /usr/local/bin/duckstation-nogui.chirgb10 | tee -a "$LOG_FILE"
+		  #sed -i '/Rotate = 1/d' /home/ark/.config/duckstation/settings.ini
+		fi
+
+
+    printf "\n GlideN64 video plugin for mupen64plus \n" | tee -a "$LOG_FILE"
+      if test -z "$(cat /home/ark/.config/mupen64plus/mupen64plus.cfg | grep Video-GLideN64)"
+      then
+        sed -i -e '/Rotate \= 0/{r /home/ark/add_gliden64_to_mupen64plus_cfg.txt' -e 'd}' /home/ark/.config/mupen64plus/mupen64plus.cfg
+      fi
+      if test -z "$(grep 'GlideN64' /usr/local/bin/perfmax | tr -d '\0')"
+      then
+          sudo sed -i '/\[\[ \$1 == "standalone-Rice" \]\] || \[\[ \$1 == "standalone-Glide64mk2" \]\]/s//\[\[ \$1 == "standalone-Rice" \]\] || \[\[ \$1 == "standalone-Glide64mk2" \]\] || \[\[ \$1 == "standalone-GlideN64" \]\]/' /usr/local/bin/perfmax
+          sudo sed -i '/\[\[ \$1 == "standalone-Rice" \]\] || \[\[ \$1 == "standalone-Glide64mk2" \]\]/s//\[\[ \$1 == "standalone-Rice" \]\] || \[\[ \$1 == "standalone-Glide64mk2" \]\] || \[\[ \$1 == "standalone-GlideN64" \]\]/' /usr/local/bin/perfmax.pic
+          sudo sed -i '/\[\[ \$1 == "standalone-Rice" \]\] || \[\[ \$1 == "standalone-Glide64mk2" \]\]/s//\[\[ \$1 == "standalone-Rice" \]\] || \[\[ \$1 == "standalone-Glide64mk2" \]\] || \[\[ \$1 == "standalone-GlideN64" \]\]/' /usr/local/bin/perfmax.asc
+      fi
+
+
+	  printf "\n Add support for 4:3 aspect ratio for mupen64plus standalone rice video plugin \n" | tee -a "$LOG_FILE"
+	    if test -z "$(grep "ResolutionWidth" /home/ark/.config/mupen64plus/mupen64plus.cfg | tr -d '\0')"
+	    then
+	      sed -i "/\[Video-Rice\]/c\\[Video-Rice\]\n\n\# Hack to accomodate widescreen devices (Thanks to AmberElec sources for tip)\nResolutionWidth \= 480" /home/ark/.config/mupen64plus/mupen64plus.cfg
+	    fi
+
+
+    printf "\n Enable Threaded DSP for 3DO by default \n" | tee -a "$LOG_FILE"
+      if test ! -z "$(cat /home/ark/.config/retroarch/retroarch-core-options.cfg | grep 'opera_dsp_threaded' | tr -d '\0')"
+      then
+          sed -i '/opera_dsp_threaded \= "disabled"/c\opera_dsp_threaded \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+          sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nopera_dsp_threaded \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      else
+          sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nopera_dsp_threaded \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+          sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nopera_dsp_threaded \= "enabled"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      fi
+
+
+    printf "\n Make sure retroarch core repos are still set to Github if it's been changed and make sure they're set to the correct repo \n" | tee -a "$LOG_FILE"
+        sed -i "/core_updater_buildbot_cores_url \=/c\core_updater_buildbot_cores_url \= \"https:\/\/raw.githubusercontent.com\/christianhaitian\/retroarch-cores\/master\/aarch64\/\"" ~/.config/retroarch/retroarch.cfg
+        sed -i "/core_updater_buildbot_cores_url \=/c\core_updater_buildbot_cores_url \= \"https:\/\/raw.githubusercontent.com\/christianhaitian\/retroarch-cores\/master\/arm7hf\/\"" ~/.config/retroarch32/retroarch.cfg
+        sed -i "/core_updater_buildbot_cores_url \=/c\core_updater_buildbot_cores_url \= \"https:\/\/raw.githubusercontent.com\/christianhaitian\/retroarch-cores\/master\/aarch64\/\"" ~/.config/retroarch/retroarch.cfg.bak
+        sed -i "/core_updater_buildbot_cores_url \=/c\core_updater_buildbot_cores_url \= \"https:\/\/raw.githubusercontent.com\/christianhaitian\/retroarch-cores\/master\/arm7hf\/\"" ~/.config/retroarch32/retroarch.cfg.bak
+        echo "Retroarch core repos have been changed to github"
+
+
+    printf "\n Clean up some old unneeded files in the system \n" | tee -a "$LOG_FILE"
+      sudo rm -rfv /var/cache/* | tee -a "$LOG_FILE"
+      sudo rm -rfv /var/backups/* | tee -a "$LOG_FILE"
+      sudo journalctl --vacuum-time=1s
+
+
+    printf "\n cap32 standalone-Glide64mk2 optimization \n" | tee -a "$LOG_FILE"
+      if test -z "$(grep 'cap32' /usr/local/bin/perfmax | tr -d '\0')"
+      then
+          sudo sed -i '/\[\[ \$1 == "standalone-Glide64mk2" \]\]/s//\[\[ \$1 == "standalone-Glide64mk2" \]\] || \[\[ \$1 == "standalone-GlideN64" \]\] || \[\[ \$2 == "cap32" \]\]/' /usr/local/bin/perfmax
+          sudo sed -i '/\[\[ \$1 == "standalone-Glide64mk2" \]\]/s//\[\[ \$1 == "standalone-Glide64mk2" \]\] || \[\[ \$1 == "standalone-GlideN64" \]\] || \[\[ \$2 == "cap32" \]\]/' /usr/local/bin/perfmax.pic
+          sudo sed -i '/\[\[ \$1 == "standalone-Glide64mk2" \]\]/s//\[\[ \$1 == "standalone-Glide64mk2" \]\] || \[\[ \$1 == "standalone-GlideN64" \]\] || \[\[ \$2 == "cap32" \]\]/' /usr/local/bin/perfmax.asc
+      fi
+
+
+    printf "\n Apply cap32_libretro updated core \n" | tee -a "$LOG_FILE"
+      mv -fv /home/ark/cap32_libretro.so.rk3326 /home/ark/.config/retroarch/cores/cap32_libretro.so | tee -a "$LOG_FILE"
+
+
+    printf "\n Add symlink for librga.so.2 arm32bit environment \n" | tee -a "$LOG_FILE"
+      if [ ! -f "/usr/lib/arm-linux-gnueabihf/librga.so.2" ]; then
+        cd /usr/lib/arm-linux-gnueabihf/
+        sudo ln -sf librga.so librga.so.2
+        cd /home/ark
+      else
+        printf "  librga.so.2 already exists in /usr/lib/arm-linux-gnueabihf/" | tee -a "$LOG_FILE"
+      fi
+
+
+    printf "\n Add vic20 as separate system \n" | tee -a "$LOG_FILE"
+        mkdir -v /roms/vic20 | tee -a "$LOG_FILE"
+
+
+    printf "\n Add microvision \n" | tee -a "$LOG_FILE"
+      if [ ! -d "/roms/mv" ]; then
+        mkdir -v /roms/mv | tee -a "$LOG_FILE"
+      fi
+
+    printf "\n Set permissions on microvision assets in case they were altered \n" | tee -a "$LOG_FILE"
+      sudo chmod ugo+rwx -R /opt/mvem
+      sudo chmod ugo+rwx /usr/local/bin/mvem.sh
+      sudo chmod ugo+rwx /opt/mvem/gptokeyb
+
+
+    printf "\n Install puae2021 libretro core \n" | tee -a "$LOG_FILE"
+      mv -fv /home/ark/puae2021_libretro.so.rk3326 /home/ark/.config/retroarch/cores/puae2021_libretro.so | tee -a "$LOG_FILE"
+
+
+    printf "\n Cleanup some unneeded left over files in the home folder from previous updates if need be \n" | tee -a "$LOG_FILE"
+      if [ $(ls -1 /home/ark/*.dtb 2>/dev/null | wc -l) != 0 ]; then
+        sudo rm -fv /home/ark/*.dtb | tee -a "$LOG_FILE"
+        sudo rm -fv /home/ark/*.v2 | tee -a "$LOG_FILE"
+        printf "   Cleaned up some unneeded files found.\n" | tee -a "$LOG_FILE"
+      else
+        printf "   No clean up needed.\n" | tee -a "$LOG_FILE"
+      fi
+
+
+    printf "\n Ensure swanstation and puae2021 work for rk3326 devices \n" | tee -a "$LOG_FILE"
+      if [ ! -f "/boot/rk3566.dtb" ] && [ ! -f "/boot/rk3566-OC.dtb" ]; then
+        printf "\nFixing swanstation and puae2021 (if) not booting...\n" | tee -a "$LOG_FILE"
+        if [ -f "/home/ark/.config/retroarch/cores/swanstation_libretro.so.rk3326" ]; then
+          mv -fv /home/ark/.config/retroarch/cores/swanstation_libretro.so.rk3326 /home/ark/.config/retroarch/cores/swanstation_libretro.so | tee -a "$LOG_FILE"
+        fi
+        if [ -f "/home/ark/.config/retroarch/cores/puae2021_libretro.so.rk3326" ]; then
+          mv -fv /home/ark/.config/retroarch/cores/puae2021_libretro.so.rk3326 /home/ark/.config/retroarch/cores/puae2021_libretro.so | tee -a "$LOG_FILE"
+        fi
+      fi
+
+
+    printf "\n Default mgba libretro emulator governor to performance \n" | tee -a "$LOG_FILE"
+      if test -z "$(grep 'mgba' /usr/local/bin/perfmax.pic | tr -d '\0')"
+      then
+          sudo sed -i '/\[\[ \$1 == "On" \]\]/s//\[\[ \$1 == "On" \]\] || \[\[ \$2 == *"mgba"* \]\]/' /usr/local/bin/perfmax
+          sudo sed -i '/\[\[ \$1 == "On" \]\]/s//\[\[ \$1 == "On" \]\] || \[\[ \$2 == *"mgba"* \]\]/' /usr/local/bin/perfmax.pic
+          sudo sed -i '/\[\[ \$1 == "On" \]\]/s//\[\[ \$1 == "On" \]\] || \[\[ \$2 == *"mgba"* \]\]/' /usr/local/bin/perfmax.asc
+      fi
+
+
+    printf "\n Fix some GlideN64 plugin settings \n" | tee -a "$LOG_FILE"
+      sed -i "/UseNativeResolutionFactor \=/c\UseNativeResolutionFactor \= 1" /home/ark/.config/mupen64plus/mupen64plus.cfg
+      sed -i "/ThreadedVideo \=/c\ThreadedVideo \= True" /home/ark/.config/mupen64plus/mupen64plus.cfg
+
+
+    printf "\n Fix scummvm ability to change key configuration \n" | tee -a "$LOG_FILE"
+      sudo cp -fv /usr/local/bin/ti99keydemon.py /usr/local/bin/scummvmkeydemon.py | tee -a "$LOG_FILE"
+      sudo chmod 777 /usr/local/bin/scummvmkeydemon.py
+      sudo sed -i 's/ti99sim-sdl/scummvm/' /usr/local/bin/scummvmkeydemon.py
+
+
+    printf "\n Install and link new SDL 2.0.2800.2 (aka SDL 2.0.28.2) \n" | tee -a "$LOG_FILE"
+      sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.2800.2.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 | tee -a "$LOG_FILE"
+      sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.2800.2.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 | tee -a "$LOG_FILE"
+      sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
+      sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+
+    printf "\n Cleanup \n" | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/add_gliden64_to_mupen64plus_cfg.txt | tee -a "$LOG_FILE"
+      sudo rm -rf /dev/shm/*
+
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update08252023"
+
+fi
+
+
+
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
 	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
