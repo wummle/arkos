@@ -716,7 +716,7 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
       sudo chmod ugo+rwx /usr/local/bin/ecwolf.sh
 
     printf "\n Set permissions on vice_xvic_libretro core in case they were altered \n" | tee -a "$LOG_FILE"
-      sudo chmod ugo+rwx /home/ark/.config/retroarch/vice_xvic_libretro.so
+      sudo chmod ugo+rwx /home/ark/.config/retroarch/cores/vice_xvic_libretro.so
 
 
     printf "\n Change mednafen_vb options cpu emulation to fast \n" | tee -a "$LOG_FILE"
