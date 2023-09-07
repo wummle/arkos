@@ -989,6 +989,11 @@ if [ ! -f "/home/ark/.config/.update09022023" ]; then
       sudo chmod -R 755 /home/ark
       sudo chown -R ark:ark /home/ark/.config/gzdoom/
       sudo chown -Rv ark:ark /home/ark/.config/mupen64plus/
+      sudo chmod 755 ~/.config/pulse
+      sudo chmod 755 ~/.config/retroarch/retroarch-core-options.cfg
+      sudo chmod 755 ~/.config/retroarch/cores/gearboy_libretro.*
+      sudo chmod 755 ~/.config/retroarch/cores/sameboy_libretro.*
+      sudo chmod 755 ~/.config/retroarch/cores/mess_libretro.*
 
 
     if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep -i '<core>gearboy</core>')"
@@ -1002,15 +1007,6 @@ if [ ! -f "/home/ark/.config/.update09022023" ]; then
     then
 		  sed -i '/<core>gearboy<\/core>/c\\t\t\t  <core>gearboy<\/core>\n\t\t\t  <core>sameboy<\/core>' /etc/emulationstation/es_systems.cfg
     fi
-
-
-      sudo chmod 755 ~/.config/retroarch/retroarch-core-options.cfg
-      
-      sudo chmod 755 ~/.config/pulse
-      
-      sudo chmod 755 ~/.config/retroarch/cores/gearboy_libretro.*
-      sudo chmod 755 ~/.config/retroarch/cores/sameboy_libretro.*
-      sudo chmod 755 ~/.config/retroarch/cores/mess_libretro.*
 
 
     printf "\n Disable the ability for cores to be able to change video modes in retroarch and retroarch32 \n" | tee -a "$LOG_FILE"
