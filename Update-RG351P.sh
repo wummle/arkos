@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="08252023"
+UPDATE_DATE="09072023"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -45,6 +45,7 @@ if [ ! -f "/home/ark/.config/.update07152021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update07152021"
+
 fi
 
 
@@ -70,7 +71,9 @@ if [ ! -f "/home/ark/.config/.update08092021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update08092021"
+
 fi
+
 
 if [ ! -f "/home/ark/.config/.update09052021" ]; then
 
@@ -94,7 +97,9 @@ if [ ! -f "/home/ark/.config/.update09052021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update09052021"
+
 fi
+
 
 if [ ! -f "/home/ark/.config/.update09062021" ]; then
 
@@ -118,7 +123,9 @@ if [ ! -f "/home/ark/.config/.update09062021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update09062021"
+
 fi
+
 
 if [ ! -f "/home/ark/.config/.update10212021" ]; then
 
@@ -142,7 +149,9 @@ if [ ! -f "/home/ark/.config/.update10212021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update10212021"
+
 fi
+
 
 if [ ! -f "/home/ark/.config/.update10262021" ]; then
 
@@ -166,6 +175,7 @@ if [ ! -f "/home/ark/.config/.update10262021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update10262021"
+
 fi
 
 
@@ -199,7 +209,9 @@ if [ ! -f "/home/ark/.config/.update11172021" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update11172021"
+
 fi
+
 
 if [ ! -f "/home/ark/.config/.update01132022" ]; then
 
@@ -223,7 +235,9 @@ if [ ! -f "/home/ark/.config/.update01132022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update01132022"
+
 fi
+
 
 if [ ! -f "/home/ark/.config/.update01142022" ]; then
 
@@ -247,6 +261,7 @@ if [ ! -f "/home/ark/.config/.update01142022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update01142022"
+
 fi
 
 
@@ -272,6 +287,7 @@ if [ ! -f "/home/ark/.config/.update02142022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update02142022"
+
 fi
 
 if [ ! -f "/home/ark/.config/.update05142022" ]; then
@@ -300,6 +316,7 @@ if [ ! -f "/home/ark/.config/.update05142022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update05142022"
+
 fi
 
 
@@ -329,6 +346,7 @@ if [ ! -f "/home/ark/.config/.update06062022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update06062022"
+
 fi
 
 if [ ! -f "/home/ark/.config/.update10022022" ]; then
@@ -354,6 +372,7 @@ if [ ! -f "/home/ark/.config/.update10022022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update10022022"
+
 fi
 
 
@@ -376,9 +395,9 @@ if [ ! -f "/home/ark/.config/.update12022022" ]; then
     sudo chown -R ark:ark /home/ark/.config/gzdoom/
     sudo chmod ugo+rwx -R /home/ark/.config/gzdoom/*
     sudo chmod ugo+rwx /opt/quitter/*
-    sudo chmod ugo+rwx /usr/lib/aarch64-linux-gnu/libSDL2_gfx-1.0.so.0
-    sudo chmod ugo+rwx /usr/lib/aarch64-linux-gnu/libzmusic.so.1
-    sudo chmod ugo+rwx /usr/lib/aarch64-linux-gnu/libzmq.so.5.2.2
+    sudo chmod 755 /usr/lib/aarch64-linux-gnu/libSDL2_gfx-1.0.so.0
+    sudo chmod 755 /usr/lib/aarch64-linux-gnu/libzmusic.so.1
+    sudo chmod 755 /usr/lib/aarch64-linux-gnu/libzmq.so.5.2.2
     sudo chmod ugo+rwx /usr/local/bin/doom.sh
 
      if test -z "$(grep 'standalone-gzdoom' /etc/emulationstation/es_systems.cfg | tr -d '\0')"
@@ -398,6 +417,7 @@ if [ ! -f "/home/ark/.config/.update12022022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update12022022"
+
 fi
 
 
@@ -425,6 +445,7 @@ if [ ! -f "/home/ark/.config/.update12092022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update12092022"
+
 fi
 
 
@@ -457,6 +478,7 @@ if [ ! -f "/home/ark/.config/.update12102022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update12102022"
+
 fi
 
 
@@ -483,6 +505,7 @@ if [ ! -f "/home/ark/.config/.update12202022" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update12202022"
+
 fi
 
 
@@ -510,6 +533,7 @@ if [ ! -f "/home/ark/.config/.update02022023" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update02022023"
+
 fi
 
 
@@ -531,7 +555,7 @@ if [ ! -f "/home/ark/.config/.update03262023" ]; then
     sudo chmod ugo+rwx /opt/gzdoom/*
     sudo chown -R ark:ark /home/ark/.config/gzdoom/
     sudo chmod ugo+rwx -R /home/ark/.config/gzdoom/*
-    sudo chmod ugo+rwx /usr/lib/aarch64-linux-gnu/libzmusic.so.1
+    sudo chmod 755 /usr/lib/aarch64-linux-gnu/libzmusic.so.1
     sudo chmod ugo+rwx /usr/local/bin/doom.sh
 
     printf "\nInstall and link new SDL 2.0.2600.2 (aka SDL 2.0.26.2)\n" | tee -a "$LOG_FILE"
@@ -614,6 +638,7 @@ if [ ! -f "/home/ark/.config/.update03262023" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update03262023"
+
 fi
 
 
@@ -644,6 +669,7 @@ if [ ! -f "/home/ark/.config/.update04052023" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update04052023"
+
 fi
 
 
@@ -929,6 +955,132 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update09022023" ]; then
+
+	printf "\n Add Sameboy and GearBoy, Update MESS libretro, Show Last Played, Update NesBox Theme \n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09022023/arkosupdate09022023.zip -O /home/ark/arkosupdate09022023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09022023.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate09022023.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate09022023.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate09022023.zip | tee -a "$LOG_FILE"
+	else 
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+
+    printf "\n ---CORES--- \n" | tee -a "$LOG_FILE"
+    printf "\n Add sameboy v0.15.4 core for GB and GBC \n" | tee -a "$LOG_FILE"
+    printf "\n Add GearBoy core for GB and GBC \n" | tee -a "$LOG_FILE"
+    printf "\n Update MESS libretro core to v0.250 for Adventure Vision and Bally Astrocade \n" | tee -a "$LOG_FILE"
+
+
+    printf "\n Ensure proper ownership on folders \n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /opt/
+      sudo chown ark:ark /etc/emulationstation/es_systems.cfg
+      sudo chown -Rv ark:ark /opt/yabasanshiro
+      sudo chown -Rv ark:ark /opt/retroarch
+      sudo chown -Rv ark:ark /opt/hypseus-singe
+      sudo chown -Rv ark:ark /opt/amiberry
+      sudo chmod -v 777 /opt/retroarch/bin/*
+      sudo chown -v ark:ark /opt/retroarch/bin/*
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+      sudo chown -R ark:ark /home/ark/.config/gzdoom/
+      sudo chown -Rv ark:ark /home/ark/.config/mupen64plus/
+      sudo chmod 755 ~/.config/pulse
+      sudo chmod 755 ~/.config/retroarch/retroarch-core-options.cfg
+      sudo chmod 755 ~/.config/retroarch/cores/gearboy_libretro.*
+      sudo chmod 755 ~/.config/retroarch/cores/sameboy_libretro.*
+      sudo chmod 755 ~/.config/retroarch/cores/mess_libretro.*
+
+
+    if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep -i '<core>gearboy</core>')"
+    then
+		  sed -i '/<core>tgbdual<\/core>/c\\t\t\t  <core>tgbdual<\/core>\n\t\t\t  <core>gearboy<\/core>' /etc/emulationstation/es_systems.cfg
+    fi
+
+    sleep 1
+
+    if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep -i '<core>sameboy</core>')"
+    then
+		  sed -i '/<core>gearboy<\/core>/c\\t\t\t  <core>gearboy<\/core>\n\t\t\t  <core>sameboy<\/core>' /etc/emulationstation/es_systems.cfg
+    fi
+
+
+    printf "\n Disable the ability for cores to be able to change video modes in retroarch and retroarch32 \n" | tee -a "$LOG_FILE"
+      sed -i '/driver_switch_enable \= \"true\"/c\driver_switch_enable \= \"false\"' /home/ark/.config/retroarch32/retroarch.cfg
+      sed -i '/driver_switch_enable \= \"true\"/c\driver_switch_enable \= \"false\"' /home/ark/.config/retroarch32/retroarch.cfg.bak
+      sed -i '/driver_switch_enable \= \"true\"/c\driver_switch_enable \= \"false\"' /home/ark/.config/retroarch/retroarch.cfg
+      sed -i '/driver_switch_enable \= \"true\"/c\driver_switch_enable \= \"false\"' /home/ark/.config/retroarch/retroarch.cfg.bak
+
+    printf "\n Adjust volume in retroarch and retroarch32 \n" | tee -a "$LOG_FILE"
+      sed -i '/audio_volume \= \"-4.500000\"/c\audio_volume \= \"6.0\"' /home/ark/.config/retroarch32/retroarch.cfg
+      sed -i '/audio_volume \= \"-4.500000\"/c\audio_volume \= \"6.0\"' /home/ark/.config/retroarch32/retroarch.cfg.bak
+      sed -i '/audio_volume \= \"0.500000\"/c\audio_volume \= \"6.0\"' /home/ark/.config/retroarch/retroarch.cfg
+      sed -i '/audio_volume \= \"0.500000\"/c\audio_volume \= \"6.0\"' /home/ark/.config/retroarch/retroarch.cfg.bak
+
+    printf "\n Set video mode to 480x320 for RG351P and RG351M in retroarch and retroarch32 \n" | tee -a "$LOG_FILE"
+      sed -i '/custom_viewport_width \= \"640\"/c\custom_viewport_width \= \"480\"' /home/ark/.config/retroarch32/retroarch.cfg
+      sed -i '/custom_viewport_height \= \"480\"/c\custom_viewport_height \= \"320\"' /home/ark/.config/retroarch32/retroarch.cfg
+      sed -i '/custom_viewport_width \= \"640\"/c\custom_viewport_width \= \"480\"' /home/ark/.config/retroarch32/retroarch.cfg.bak
+      sed -i '/custom_viewport_height \= \"480\"/c\custom_viewport_height \= \"320\"' /home/ark/.config/retroarch32/retroarch.cfg.bak
+
+      sed -i '/custom_viewport_width \= \"640\"/c\custom_viewport_width \= \"480\"' /home/ark/.config/retroarch/retroarch.cfg
+      sed -i '/custom_viewport_height \= \"480\"/c\custom_viewport_height \= \"320\"' /home/ark/.config/retroarch/retroarch.cfg
+      sed -i '/custom_viewport_width \= \"640\"/c\custom_viewport_width \= \"480\"' /home/ark/.config/retroarch/retroarch.cfg.bak
+      sed -i '/custom_viewport_height \= \"480\"/c\custom_viewport_height \= \"320\"' /home/ark/.config/retroarch/retroarch.cfg.bak
+
+
+    printf "\n Cleanup \n" | tee -a "$LOG_FILE"
+    printf "\n The RG351P and RG351M ArkOS image only has 6GB in the system partition \n" | tee -a "$LOG_FILE"
+    printf "\n Any additional space that can be reclaimed is desirable at this point \n" | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/add_*.txt | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/update_*.txt | tee -a "$LOG_FILE"
+      sudo rm -rf /themes | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/*.zip | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/*.so | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/*.info | tee -a "$LOG_FILE"
+      sudo rm -v /bin/emulationstation/*.bak | tee -a "$LOG_FILE"
+
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update09022023"
+
+fi
+
+
+if [ ! -f "/home/ark/.config/.update09072023" ]; then
+
+	printf "\n Update EmulationStation \n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09072023/arkosupdate09072023.zip -O /home/ark/arkosupdate09072023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09072023.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate09072023.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate09072023.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate09072023.zip | tee -a "$LOG_FILE"
+	else 
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+	
+
+	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update09072023"
+
+fi
+
 
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
@@ -949,4 +1101,5 @@ if [ ! -f "$UPDATE_DONE-1" ]; then
 	echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
 	sudo reboot
 	exit 187
+
 fi
