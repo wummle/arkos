@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="09072023"
+UPDATE_DATE="09082023"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1078,6 +1078,55 @@ if [ ! -f "/home/ark/.config/.update09072023" ]; then
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update09072023"
+
+fi
+
+
+if [ ! -f "/home/ark/.config/.update09082023" ]; then
+
+	printf "\n Update ScummVM to v2.8.0, Add Sega Pico \n" | tee -a "$LOG_FILE"
+	sudo rm -rf /dev/shm/*
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09082023/arkosupdate09082023a.zip -O /home/ark/arkosupdate09082023a.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09082023a.zip | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09082023/arkosupdate09082023b.zip -O /home/ark/arkosupdate09082023b.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09082023b.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate09082023a.zip" ] && [ -f "/home/ark/arkosupdate09082023b.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate09082023a.zip -d / | tee -a "$LOG_FILE"
+		sudo unzip -X -o /home/ark/arkosupdate09082023b.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate09082023a.zip | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate09082023b.zip | tee -a "$LOG_FILE"
+	else 
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+    printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+    printf "\n Cleanup \n" | tee -a "$LOG_FILE"
+    printf "\n The RG351P and RG351M ArkOS image only has 6GB in the system partition \n" | tee -a "$LOG_FILE"
+    printf "\n Any additional space that can be reclaimed is desirable at this point \n" | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/add_*.txt | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/update_*.txt | tee -a "$LOG_FILE"
+      sudo rm -rf /themes | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/*.zip | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/*.so | tee -a "$LOG_FILE"
+      sudo rm -v /home/ark/*.info | tee -a "$LOG_FILE"
+      sudo rm -v /bin/emulationstation/*.bak | tee -a "$LOG_FILE"
+
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update09082023"
 
 fi
 
