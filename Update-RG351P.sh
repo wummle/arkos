@@ -1359,7 +1359,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update03202024" ]; then
 
-	printf "\n RetroArch v1.17.0, PPSSPP v1.17.1, Critical PortMaster Update, RetroArch Filters, Add Palm mu_libretro core, update 64-Bit uae4arm_libretro, add stark_shaders for Scummvm and files for Scummvm libretro, update NEX-Box, add XRoar Tandy coco emu, add Watara SuperVision, add videopac, add and fix file extensions for various systems, set perfmax to GOVERNOR, updated USB DAC control script\n" | tee -a "$LOG_FILE"
+	printf "\n RetroArch v1.17.0, PPSSPP v1.17.1, Critical PortMaster Update, RetroArch Filters, Add Palm mu_libretro core, update 64-Bit uae4arm_libretro, add stark_shaders for Scummvm and files for Scummvm libretro, update NES-Box, add XRoar Tandy coco emu, add Watara SuperVision, add videopac, add and fix file extensions for various systems, set perfmax to GOVERNOR, updated USB DAC control script\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03202024/arkosupdate03202024.zip -O /home/ark/arkosupdate03202024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate03202024.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate03202024.zip -d / | tee -a "$LOG_FILE"
