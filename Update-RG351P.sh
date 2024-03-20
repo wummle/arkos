@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="02262024"
+UPDATE_DATE="03202024"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1357,6 +1357,84 @@ if [ ! -f "/home/ark/.config/.update02262024" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update03202024" ]; then
+
+	printf "\n RetroArch v1.17.0, PPSSPP v1.17.1, Critical PortMaster Update, RetroArch Filters, Add Palm mu_libretro core, update 64-Bit uae4arm_libretro, add stark_shaders for Scummvm and files for Scummvm libretro, update NES-Box, add XRoar Tandy coco emu, add Watara SuperVision, add videopac, add and fix file extensions for various systems, set perfmax to GOVERNOR, updated USB DAC control script\n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03202024/arkosupdate03202024.zip -O /home/ark/arkosupdate03202024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate03202024.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate03202024.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
+	else 
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+      sudo chown -R ark:ark /opt/
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+        # Added ZIP and IPF support for Amiga
+        # Added CHD support for PPSSPP, Sega32x, and PSPMinis
+        # Added 7Z support for MegaDuck, PokemonMini, Atari800, Atari2600, Atari5200, Atari Lynx, PCEngine, Turbografx16, NES, NESHacks, NDS, ColecoVision, Vectrex, VirtualBoy, C128, Vic20, MSX and MSX2
+        # Added D64, N64DD, and NDD support for N64DD
+        # Fixed ZIP file extension support for VirtualBoy and MSX2
+        # Added D2M, D4M, TCRT, and VFL file extension support for C16
+        # Added BIN, CMD, D2M, D4M, D6Z, D7Z, D80, D82, D8Z, G41, G4Z, G64, G6Z, GZ, M3U, NBZ, P00, TCRT, VFL, X64, and X6Z file extension suport for C64
+        # Added D2M, D4M, TCRT, and VFL file extension support for C128
+        # Added D2M, D4M, ROM, TCRT, and VFL file extension support for Vic20
+        # Added ZIP file extension support for EASYRPG
+
+      # Use left thumbstick for mouse for Palm Mu Libretro core (Palm OS)
+      if test -z "$(cat /home/ark/.config/retroarch/retroarch-core-options.cfg | grep 'palm_emu_use_joystick_as_mouse' | tr -d '\0')"
+      then
+        printf "\nEnable the left joystick as mouse by default for Palm OS\n" | tee -a "$LOG_FILE"
+        sed -i -e '$a\\palm_emu_use_joystick_as_mouse \= \"enabled\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\palm_emu_use_joystick_as_mouse \= \"enabled\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      fi
+      
+        # Stick-drift was occurring in the Palm emulator and doesn't have its own deadzone setting.
+        # The below sets a marginal ten percent deadzone globally to eliminate drift.
+        sed -i '/input_analog_deadzone \= \"0.000000\"/c\input_analog_deadzone \= \"0.100000\"' /home/ark/.config/retroarch/retroarch.cfg
+        sed -i '/input_analog_deadzone \= \"0.000000\"/c\input_analog_deadzone \= \"0.100000\"' /home/ark/.config/retroarch/retroarch.cfg.bak
+      
+        # Assess launch image configuration and correct if necessary
+        if [ -f "/opt/system/Switch Launchimage to jpg.sh" ]; then
+          sudo cp -fv /usr/local/bin/perfmax.asc /usr/local/bin/perfmax | tee -a "$LOG_FILE"
+        fi
+      
+        # Remove very old backup of PPSSPPDL
+        sudo rm -f /opt/ppsspp/PPSSPPSDL.update1.bak
+      
+      # PortMaster critical update
+      if [[ ! "$(cat /opt/system/Tools/PortMaster/version)" =~ "2024-03-"* ]]; then
+        # Only update if our version is a possibly bugged version.
+        sudo chmod +x $HOME/Install.PortMaster.sh
+        touch $HOME/no_es_restart
+        $HOME/Install.PortMaster.sh
+      fi
+      # Delete the installer
+      rm -f $HOME/Install.PortMaster.sh
+
+
+    printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update03202024"
+
+fi
+
+
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
@@ -1367,7 +1445,7 @@ if [ ! -f "$UPDATE_DONE-1" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                               ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
+	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                              ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
 
 	touch "$UPDATE_DONE"
 	rm -v -- "$0" | tee -a "$LOG_FILE"
