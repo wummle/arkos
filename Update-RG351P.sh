@@ -1409,9 +1409,11 @@ if [ ! -f "/home/ark/.config/.update03202024" ]; then
         # Remove very old backup of PPSSPPDL
         sudo rm -f /opt/ppsspp/PPSSPPSDL.update1.bak
       
-      # PortMaster critical update
-      if [[ ! "$(cat /opt/system/Tools/PortMaster/version)" =~ "2024-03-"* ]]; then
-        # Only update if our version is a possibly bugged version.
+      ### PortMaster Critical Update
+      # Define the path to the file
+      pm_version_file="/opt/system/Tools/PortMaster/version"
+      
+      if [ ! -e "$pm_version_file" ] || ! grep -q "^2024-03-" "$pm_version_file"; then
         sudo chmod +x $HOME/Install.PortMaster.sh
         touch $HOME/no_es_restart
         $HOME/Install.PortMaster.sh
