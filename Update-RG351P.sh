@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="03282024"
+UPDATE_DATE="03292024"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1542,6 +1542,75 @@ if [ ! -f "/home/ark/.config/.update03282024" ]; then
 	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
 	touch "/home/ark/.config/.update03282024"
+
+fi
+
+
+if [ ! -f "/home/ark/.config/.update03292024" ]; then
+
+	printf "\n Add hatarib_libretro core and set as default core for Atari ST, set applewin as default emulator for Apple II, update apple2 script to default detection of linapple conf files in apple2/conf folder when using an .apple2 file \n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03292024/arkosupdate03292024.zip -O /home/ark/arkosupdate03292024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03292024.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate03292024.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate03292024.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate03292024.zip | tee -a "$LOG_FILE"
+	else
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+      # Set default options for hatarib_libretro core (Atari ST)
+      if test -z "$(cat /home/ark/.config/retroarch/retroarch-core-options.cfg | grep 'hatarib_tos' | tr -d '\0')"
+      then
+        printf "\n Assign presets for hatarib_libretro Atari ST core \n" | tee -a "$LOG_FILE"
+        sed -i -e '$a\\hatarib_borders \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_borders \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      #  Note: Set 'select' to "25" to set as Joystick/Mouse Toggle
+        sed -i -e '$a\\hatarib_pad1_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_pad1_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_pad2_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_pad2_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_pad3_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_pad3_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_pad4_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_pad4_select \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_pause_osk \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_pause_osk \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_samplerate \= \"44100\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_samplerate \= \"44100\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_statusbar \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_statusbar \= \"0\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+
+        sed -i -e '$a\\hatarib_tos \= \"<etos192us>\"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+        sed -i -e '$a\\hatarib_tos \= \"<etos192us>\"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      fi
+
+      sudo rm -v /home/ark/add_apple2.txt
+
+      sudo chown -R ark:ark /opt/
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+    printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update03292024"
 
 fi
 
