@@ -1670,6 +1670,7 @@ if [ ! -f "/home/ark/.config/.update06192024" ]; then
       sudo chown -R ark:ark /home/ark
       sudo chmod -R 755 /home/ark
 
+      sudo chmod 777 /opt/inttools/gptokeyb
 
       ### PortMaster Update if older than 2024.05.14-1028
       # Define the path to the file
