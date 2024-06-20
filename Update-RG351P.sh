@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="03302024"
+UPDATE_DATE="06192024"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1650,14 +1650,70 @@ if [ ! -f "/home/ark/.config/.update03302024" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update06192024" ]; then
+
+	printf "\nUpdate RetroArch v1.18.0, Update SDl2 to 2.30.3, add script in tools to select SDL2 version used for Ports, Update PortMaster if older than 05-14-2024 stable, add aarch64 libzip.so.4, add aarch64 libvpx.so.5, add aarch64 libiconv.so.2, Update amiga to allow custom config with .user extension and launch amiberry rom-less with .standalone extension \n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/06192024/arkosupdate06192024.zip -O /home/ark/arkosupdate06192024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate06192024.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate06192024.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate06192024.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate06192024.zip | tee -a "$LOG_FILE"
+	else
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+      sudo chown -R ark:ark /opt/
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+
+      ### PortMaster Update if older than 2024.05.14-1028
+      # Define the path to the file
+      pm_version_file="/opt/system/Tools/PortMaster/version"
+      
+      if [ ! -e "$pm_version_file" ] || ! grep -q "^2024-05-" "$pm_version_file"; then
+        sudo chmod +x $HOME/Install.PortMaster.sh
+        touch $HOME/no_es_restart
+        $HOME/Install.PortMaster.sh
+      fi
+      # Delete the installer
+      rm -f $HOME/Install.PortMaster.sh
+
+    printf "\n Install and link new SDL 2.0.3000.3 \n" | tee -a "$LOG_FILE"
+      sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.3000.3.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.3 | tee -a "$LOG_FILE"
+      sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.3000.3.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.3 | tee -a "$LOG_FILE"
+      sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
+      sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.3 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.3 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+
+	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+
+	touch "/home/ark/.config/.update06192024"
+
+fi
+
+
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
 	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
-      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
-      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.3 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.3 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                              ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
