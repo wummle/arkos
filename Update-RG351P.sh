@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="12032024"
+UPDATE_DATE="01252025"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1881,7 +1881,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update12032024" ]; then
 
-	printf "\nFix mounting method and permissions for exFAT partition in fstab \n" | tee -a "$LOG_FILE"
+	printf "\nUpdate system OSK \n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12032024/arkosupdate12032024.zip -O /home/ark/arkosupdate12032024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12032024.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate12032024.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate12032024.zip -d / | tee -a "$LOG_FILE"
@@ -1912,16 +1912,73 @@ if [ ! -f "/home/ark/.config/.update12032024" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update01252025" ]; then
+
+	printf "\nUpdate GZDoom to 4.13.1 \nUpdate PPSSPP to 1.18.1 \nUpdate XRoar to 1.7.1 \nUpdate SDL to 2.30.10 \nUpdate Change Ports SDL tool \nAdd j2me \n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01252025/arkosupdate01252025.zip -O /home/ark/arkosupdate01252025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate01252025.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate01252025.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
+	else
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+      sudo chown -R ark:ark /opt/
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+    sudo rm -rf /dev/shm/*
+
+	  printf "\nAdd j2me emulator\n" | tee -a "$LOG_FILE"
+	  if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep 'j2me' | tr -d '\0')"
+	  then
+	    cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update01252025.bak | tee -a "$LOG_FILE"
+	    sed -i -e '/<theme>apple2<\/theme>/{r /home/ark/add_j2me.txt' -e 'd}' /etc/emulationstation/es_systems.cfg
+	  fi
+	  if [ ! -d "/roms/j2me" ]; then
+	    mkdir -v /roms/j2me | tee -a "$LOG_FILE"
+	  fi
+	  sudo rm -fv /home/ark/add_j2me.txt | tee -a "$LOG_FILE"
+
+	  sudo rm -fv /opt/gzdoom/gzdoom | tee -a "$LOG_FILE"
+	  cp -fv /opt/gzdoom/gzdoom.rk3326 /opt/gzdoom/gzdoom | tee -a "$LOG_FILE"
+	  sleep 0.5
+	  sudo rm -fv /opt/gzdoom/gzdoom.rk3326 | tee -a "$LOG_FILE"
+
+      sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.3000.10.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 | tee -a "$LOG_FILE"
+      sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.3000.10.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 | tee -a "$LOG_FILE"
+      sleep 0.5
+      sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
+      sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
+
+    printf "\nEnsure 64bit and 32bit SDL2 are still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+	touch "/home/ark/.config/.update01252025"
+
+fi
+
+
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
 	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
-      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.7 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
-      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.7 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                              ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
