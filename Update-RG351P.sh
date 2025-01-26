@@ -103,7 +103,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update09062021" ]; then
 
-	printf "\nRetroArch 1.9.8\n" | tee -a "$LOG_FILE"
+	printf "\nAdd liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09062021/arkosupdate09062021.zip -O /home/ark/arkosupdate09062021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate09062021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate09062021.zip -d / | tee -a "$LOG_FILE"
@@ -129,7 +129,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update10212021" ]; then
 
-	printf "\nRetroArch 1.9.11\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.11, add Channel F, mess libretro, quicknes, update nes-box theme, update ThemeMaster \n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10212021/arkosupdate10212021.zip -O /home/ark/arkosupdate10212021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate10212021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate10212021.zip -d / | tee -a "$LOG_FILE"
@@ -215,7 +215,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update01132022" ]; then
 
-	printf "\nRetroArch 1.9.14\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.14, add np2kai libretro, add sameduck libretro, add megaduck and neshacks\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01132022/arkosupdate01132022.zip -O /home/ark/arkosupdate01132022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate01132022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate01132022.zip -d / | tee -a "$LOG_FILE"
@@ -241,7 +241,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update01142022" ]; then
 
-	printf "\nGX4000 now using retroarch 1.9.6\n" | tee -a "$LOG_FILE"
+	printf "\nGX4000 now using retroarch 1.9.6, add megaduck to nes-box theme\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01142022/arkosupdate01142022.zip -O /home/ark/arkosupdate01142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01142022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate01142022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate01142022.zip -d / | tee -a "$LOG_FILE"
@@ -267,7 +267,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update02142022" ]; then
 
-	printf "\nUpdate Retroarch\n" | tee -a "$LOG_FILE"
+	printf "\nUpdate Retroarch, add snes9x2005 libretro, add pcsx_rearmed_peops libretro, add 351Files\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02142022/arkosupdate02142022.zip -O /home/ark/arkosupdate02142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02142022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate02142022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate02142022.zip -d / | tee -a "$LOG_FILE"
@@ -322,7 +322,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update06062022" ]; then
 
-	printf "\nUpdate SDL2 to 2.0.18.2\n" | tee -a "$LOG_FILE"
+	printf "\nUpdate SDL2 to 2.0.18.2, add libSDL2_gfx\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/06062022/arkosupdate06062022.zip -O /home/ark/arkosupdate06062022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate06062022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate06062022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate06062022.zip -d / | tee -a "$LOG_FILE"
@@ -378,7 +378,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update12022022" ]; then
 
-	printf "\nAdd GZDoom\n" | tee -a "$LOG_FILE"
+	printf "\nAdd GZDoom, fix ecwolf screen resolution\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12022022/arkosupdate12022022.zip -O /home/ark/arkosupdate12022022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12022022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate12022022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate12022022.zip -d / | tee -a "$LOG_FILE"
@@ -1914,7 +1914,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update01252025" ]; then
 
-	printf "\nUpdate GZDoom to 4.13.1 \nUpdate PPSSPP to 1.18.1 \nUpdate XRoar to 1.7.1 \nUpdate SDL to 2.30.10 \nUpdate Change Ports SDL tool \nAdd j2me \n" | tee -a "$LOG_FILE"
+	printf "\nUpdate GZDoom to 4.13.1, Update PPSSPP to 1.18.1, Update XRoar to 1.7.1, Update SDL to 2.30.10, Update Change Ports SDL tool, Add j2me \n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01252025/arkosupdate01252025.zip -O /home/ark/arkosupdate01252025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate01252025.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate01252025.zip -d / | tee -a "$LOG_FILE"
