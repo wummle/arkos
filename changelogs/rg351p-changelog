@@ -402,6 +402,7 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Update RetroArch to 1.9.8
 
 ## September 6, 2021
+* Add missing cue extension for Playstation
 * Add liblcf, libWildMidi, and libxmp
 
 ## October 21, 2021
