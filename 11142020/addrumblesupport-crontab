@@ -1,1 +1,0 @@
-@reboot /home/ark/.config/imageshift.sh && /usr/local/bin/enable_rumble
