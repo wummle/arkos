@@ -26,7 +26,7 @@ tail -f $LOG_FILE >> /dev/tty1 &
 if [ ! -f "/home/ark/.config/.update07152021" ]; then
 
 	printf "\nRetroArch 1.9.6 and add GX4000\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/07152021/rg351p/arkosupdate07152021.zip -O /home/ark/arkosupdate07152021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/07152021/arkosupdate07152021.zip -O /home/ark/arkosupdate07152021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate07152021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate07152021.zip -d / | tee -a "$LOG_FILE"
 		sudo rm -v /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
