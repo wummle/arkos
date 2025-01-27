@@ -103,7 +103,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update09062021" ]; then
 
-	printf "\nAdd liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
+	printf "\nAdd missing cue extension for Playstation, add liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09062021/arkosupdate09062021.zip -O /home/ark/arkosupdate09062021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate09062021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate09062021.zip -d / | tee -a "$LOG_FILE"
