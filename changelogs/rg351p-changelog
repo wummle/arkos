@@ -397,16 +397,20 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 
 ## August 9, 2021
 * Street of Rage Remake
+* EasyRPG
 
 ## September 5, 2021
 * Update RetroArch to 1.9.8
+* Correct permissions
 
 ## September 6, 2021
 * Add missing cue extension for Playstation
+* Add files for EasyRPG
 * Add liblcf, libWildMidi, and libxmp
 
 ## October 21, 2021
 * Update RetroArch to 1.9.11
+* Update EmulationStation
 * Add Channel F libretro
 * MESS libretro
 * QuickNES libretro
@@ -416,16 +420,18 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Update ThemeMaster
 
 ## October 26, 2021
-* RetroArch 1.9.11 Update 2
+* RetroArch 1.9.11 update to (hopefully) fix missing assets error
 
 ## November 17, 2021
 * Update RetroArch to 1.9.13
+* Update EmulationStation
 * Update PPSSPP
 
 ## January 13, 2022
 * Update RetroArch to 1.9.14
 * Add np2kai libretro
 * Add sameduck libretro
+* Add 32-Bit GPSP GBA libretro core
 * Add directories for megaduck and neshacks
 
 ## January 14, 2022
@@ -439,7 +445,7 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Add 351Files file browser
 
 ## May 14, 2022
-* Update exFAT driver
+* Update exFAT driver from exfat_fuse to exfat_linux
 * Update RetroArch
 
 ## June 6, 2022
@@ -457,10 +463,10 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Install PortMaster v6.58
 
 ## December 9, 2022
-* Update PPSSPP
+* Update PPSSPP to 1.13.2
 
 ## December 10, 2022
-* Update RetroArch
+* Update RetroArch to 1.13.0
 
 ## December 20, 2022
 * Update PPSSPP to 1.14
@@ -583,7 +589,7 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Add and fix file extensions for various systems
 * Set perfmax to GOVERNOR
 * Updated USB DAC control script
-* update NES-Box
+* Update NES-Box
 
 ## March 21, 2024
 * Update gbz35_mod theme
