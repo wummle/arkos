@@ -51,7 +51,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update08092021" ]; then
 
-	printf "\nStreet of Rage Remake\n" | tee -a "$LOG_FILE"
+	printf "\nStreet of Rage Remake, EasyRPG\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/08092021/arkosupdate08092021.zip -O /home/ark/arkosupdate08092021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate08092021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate08092021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate08092021.zip -d / | tee -a "$LOG_FILE"
@@ -77,7 +77,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update09052021" ]; then
 
-	printf "\nRetroArch 1.9.8\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.8, Correct permissions\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09052021/arkosupdate09052021.zip -O /home/ark/arkosupdate09052021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09052021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate09052021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate09052021.zip -d / | tee -a "$LOG_FILE"
@@ -103,7 +103,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update09062021" ]; then
 
-	printf "\nAdd missing cue extension for Playstation, add liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
+	printf "\nAdd missing cue extension for Playstation, add files for EasyRPG, add liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09062021/arkosupdate09062021.zip -O /home/ark/arkosupdate09062021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate09062021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate09062021.zip -d / | tee -a "$LOG_FILE"
@@ -129,7 +129,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update10212021" ]; then
 
-	printf "\nRetroArch 1.9.11, add Channel F, mess libretro, quicknes, update nes-box theme, update ThemeMaster \n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.11, EmulationStation, add Channel F, mess libretro, quicknes, update nes-box theme, update ThemeMaster \n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10212021/arkosupdate10212021.zip -O /home/ark/arkosupdate10212021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate10212021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate10212021.zip -d / | tee -a "$LOG_FILE"
@@ -155,7 +155,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update10262021" ]; then
 
-	printf "\nRetroArch 1.9.11\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.11 update to hopefully fix missing assets error\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10262021/arkosupdate10262021.zip -O /home/ark/arkosupdate10262021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10262021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate10262021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate10262021.zip -d / | tee -a "$LOG_FILE"
@@ -181,7 +181,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update11172021" ]; then
 
-	printf "\nRetroArch 1.9.13\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.13, PPSSPP, EmulationStation\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11172021/arkosupdate11172021.zip -O /home/ark/arkosupdate11172021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11172021.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate11172021.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate11172021.zip -d / | tee -a "$LOG_FILE"
@@ -215,7 +215,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update01132022" ]; then
 
-	printf "\nRetroArch 1.9.14, add np2kai libretro, add sameduck libretro, add megaduck and neshacks\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.9.14, add np2kai libretro, add sameduck libretro, add 32-Bit GPSP GBA core, add megaduck and neshacks\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01132022/arkosupdate01132022.zip -O /home/ark/arkosupdate01132022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate01132022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate01132022.zip -d / | tee -a "$LOG_FILE"
@@ -292,7 +292,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update05142022" ]; then
 
-	printf "\nUpdate extfat drivers\n" | tee -a "$LOG_FILE"
+	printf "\nUpdate extfat drivers, update RetroArch\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/05142022/arkosupdate05142022.zip -O /home/ark/arkosupdate05142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate05142022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate05142022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate05142022.zip -d / | tee -a "$LOG_FILE"
@@ -423,7 +423,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update12092022" ]; then
 
-	printf "\nUpdate PPSSPP\n" | tee -a "$LOG_FILE"
+	printf "\nPPSSPP 1.13.2-1665\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12092022/arkosupdate12092022.zip -O /home/ark/arkosupdate12092022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12092022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate12092022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate12092022.zip -d / | tee -a "$LOG_FILE"
@@ -451,7 +451,7 @@ fi
 
 if [ ! -f "/home/ark/.config/.update12102022" ]; then
 
-	printf "\nUpdate RetroArch\n" | tee -a "$LOG_FILE"
+	printf "\nRetroArch 1.13.0\n" | tee -a "$LOG_FILE"
 	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12102022/arkosupdate12102022.zip -O /home/ark/arkosupdate12102022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12102022.zip | tee -a "$LOG_FILE"
 	if [ -f "/home/ark/arkosupdate12102022.zip" ]; then
 		sudo unzip -X -o /home/ark/arkosupdate12102022.zip -d / | tee -a "$LOG_FILE"
