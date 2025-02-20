@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="01252025"
+UPDATE_DATE="02202025"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1969,6 +1969,124 @@ if [ ! -f "/home/ark/.config/.update01252025" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update02202025" ]; then
+
+	printf "\nUpdate RetroArch to v1.20.0, Update EmulationStation to v2.13.0, Update GZDoom to 4.14.0, Add BBC Micro, Add .VERSION and .DEVICE files for PortMaster, Replace supposedly bad freej2me-lr.jar and freej2me-plus-lr.jar files, Update nes-box and sagabox themes\n" | tee -a "$LOG_FILE"
+	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02202025/arkosupdate02202025.zip -O /home/ark/arkosupdate02202025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02202025.zip | tee -a "$LOG_FILE"
+	if [ -f "/home/ark/arkosupdate02202025.zip" ]; then
+		sudo unzip -X -o /home/ark/arkosupdate02202025.zip -d / | tee -a "$LOG_FILE"
+		sudo rm -v /home/ark/arkosupdate02202025.zip | tee -a "$LOG_FILE"
+	else
+		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+		sleep 3
+		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+		exit 1
+	fi
+
+      sudo chown -R ark:ark /opt/
+
+      sudo chown -Rv ark:ark /home/ark/.config/mupen64plus/
+
+      sudo chmod 666 /home/ark/add_bbcmicro.txt
+
+      sudo chown -Rv ark:ark /opt/retroarch
+      sudo chown -v ark:ark /opt/retroarch/bin/*
+      sudo chmod -v ugo+rwx /opt/retroarch/bin/*
+
+      sudo chmod 775 /home/ark/.config/retroarch/cores/*.so
+      sudo chmod 775 /home/ark/.config/retroarch32/cores/*.so
+
+      sudo chmod ug+rw -R /usr/bin/emulationstation/emulationstation/resources
+      sudo chmod 755 /usr/bin/emulationstation/boot_controls
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation.sh
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation.header
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation.fullscreen
+
+      sudo chown ark:ark /etc/emulationstation/es_systems.cfg
+      sudo chmod 775 /etc/emulationstation/es_systems.cfg
+
+      sudo chown -Rv ark:ark /opt/yabasanshiro
+      sudo chown -Rv ark:ark /opt/hypseus-singe
+      sudo chown -Rv ark:ark /opt/amiberry
+
+      sudo chmod 777 -R /opt/mvem
+      sudo chmod 777 /opt/mvem/gptokeyb
+      sudo chmod 777 /opt/quitter/*
+      sudo chmod 777 /opt/ppsspp/PPSSPPSDL
+
+      sudo chmod 777 /opt/gzdoom/*
+      sudo chown -R ark:ark /home/ark/.config/gzdoom/
+      sudo chmod ugo+rwx -R /home/ark/.config/gzdoom/*
+
+      sudo chmod 777 /opt/lzdoom/*
+      sudo chown -R ark:ark /home/ark/.config/lzdoom/
+      sudo chmod ugo+rwx -R /home/ark/.config/lzdoom/*
+
+      sudo chmod 755 /usr/lib/aarch64-linux-gnu/libSDL2_gfx-1.0.so.0
+      sudo chmod 755 /usr/lib/aarch64-linux-gnu/libzmusic.so.1
+      sudo chmod 755 /usr/lib/aarch64-linux-gnu/libzmq.so.5.2.2
+
+      sudo chmod 777 /usr/local/bin/doom.sh
+      sudo chmod 777 /usr/local/bin/ecwolf.sh
+      sudo chmod 777 /usr/local/bin/mvem.sh
+      sudo chmod 777 /usr/local/bin/b2.sh
+      sudo chmod 777 /usr/local/bin/filebrowser
+      sudo chmod 777 /usr/local/bin/freej2me_files/*
+
+      sudo chmod 755 ~/.config/pulse
+
+      sudo chmod 666 ~/.config/.DEVICE
+      sudo chmod 666 ~/.config/.VERSION
+
+      sudo chmod 755 ~/.config/retroarch/retroarch-core-options.cfg
+      sudo chmod 755 ~/.config/retroarch/cores/b2_libretro.*
+
+      sudo chmod 777 /opt/inttools/gptokeyb
+      sudo chmod 666 /opt/inttools/gamecontrollerdb.txt
+      sudo chmod 666 /opt/inttools/keys.gptk
+      sudo chmod 666 /opt/inttools/keys2.gptk
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+    sudo rm -rf /dev/shm/*
+
+	  printf "\nAdd BBC Micro emulator\n" | tee -a "$LOG_FILE"
+	    if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep 'bbcmicro' | tr -d '\0')"
+	    then
+	      cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update02202025.bak | tee -a "$LOG_FILE"
+	      sed -i -e '/<theme>apple2<\/theme>/{r /home/ark/add_bbcmicro.txt' -e 'd}' /etc/emulationstation/es_systems.cfg
+	    fi
+	    if [ ! -d "/roms/bbcmicro" ]; then
+	      mkdir -v /roms/bbcmicro | tee -a "$LOG_FILE"
+	    fi
+	  sudo rm -fv /home/ark/add_bbcmicro.txt | tee -a "$LOG_FILE"
+
+	  printf "\nIncrease deadzones for gzdoom - encountered stick drift\n" | tee -a "$LOG_FILE"
+      sed -i 's/^Axis3deadzone=.*/Axis3deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini
+      sed -i 's/^Axis4deadzone=.*/Axis4deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini
+      sed -i 's/^Axis3deadzone=.*/Axis3deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini.351p
+      sed -i 's/^Axis4deadzone=.*/Axis4deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini.351p
+
+    if ls /roms/psp/ppsspp/ISO/*.{cso,CSO,iso,ISO}; then
+      mv /roms/psp/ppsspp/ISO/*.{cso,CSO,iso,ISO} /roms/psp/
+    fi
+
+    printf "\nEnsure 64bit and 32bit SDL2 are still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+  touch "/home/ark/.config/.update02202025"
+
+fi
+
+
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
@@ -1982,6 +2100,7 @@ if [ ! -f "$UPDATE_DONE-1" ]; then
 
 	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
 	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                              ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
+  echo "$UPDATE_DATE" > /home/ark/.config/.VERSION
 
 	touch "$UPDATE_DONE"
 	rm -v -- "$0" | tee -a "$LOG_FILE"
