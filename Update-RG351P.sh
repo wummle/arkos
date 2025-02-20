@@ -1971,17 +1971,17 @@ fi
 
 if [ ! -f "/home/ark/.config/.update02202025" ]; then
 
-	printf "\nUpdate RetroArch to v1.20.0, Update EmulationStation to v2.13.0, Update GZDoom to 4.14.0, Add BBC Micro, Add .VERSION and .DEVICE files for PortMaster, Replace supposedly bad freej2me-lr.jar and freej2me-plus-lr.jar files, Update nes-box and sagabox themes\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02202025/arkosupdate02202025.zip -O /home/ark/arkosupdate02202025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02202025.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate02202025.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate02202025.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate02202025.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate RetroArch to v1.20.0, Update EmulationStation to v2.13.0, Update GZDoom to 4.14.0, Add BBC Micro, Add .VERSION and .DEVICE files for PortMaster, Replace supposedly bad freej2me-lr.jar and freej2me-plus-lr.jar files, Update nes-box and sagabox themes\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02202025/arkosupdate02202025.zip -O /home/ark/arkosupdate02202025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02202025.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate02202025.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate02202025.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate02202025.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -2053,18 +2053,18 @@ if [ ! -f "/home/ark/.config/.update02202025" ]; then
 
     sudo rm -rf /dev/shm/*
 
-	  printf "\nAdd BBC Micro emulator\n" | tee -a "$LOG_FILE"
-	    if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep 'bbcmicro' | tr -d '\0')"
-	    then
-	      cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update02202025.bak | tee -a "$LOG_FILE"
-	      sed -i -e '/<theme>apple2<\/theme>/{r /home/ark/add_bbcmicro.txt' -e 'd}' /etc/emulationstation/es_systems.cfg
-	    fi
-	    if [ ! -d "/roms/bbcmicro" ]; then
-	      mkdir -v /roms/bbcmicro | tee -a "$LOG_FILE"
-	    fi
-	  sudo rm -fv /home/ark/add_bbcmicro.txt | tee -a "$LOG_FILE"
+    printf "\nAdd BBC Micro emulator\n" | tee -a "$LOG_FILE"
+      if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep 'bbcmicro' | tr -d '\0')"
+      then
+        cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update02202025.bak | tee -a "$LOG_FILE"
+        sed -i -e '/<theme>apple2<\/theme>/{r /home/ark/add_bbcmicro.txt' -e 'd}' /etc/emulationstation/es_systems.cfg
+      fi
+      if [ ! -d "/roms/bbcmicro" ]; then
+        mkdir -v /roms/bbcmicro | tee -a "$LOG_FILE"
+      fi
+    sudo rm -fv /home/ark/add_bbcmicro.txt | tee -a "$LOG_FILE"
 
-	  printf "\nIncrease deadzones for gzdoom - encountered stick drift\n" | tee -a "$LOG_FILE"
+    printf "\nIncrease deadzones for gzdoom - encountered stick drift\n" | tee -a "$LOG_FILE"
       sed -i 's/^Axis3deadzone=.*/Axis3deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini
       sed -i 's/^Axis4deadzone=.*/Axis4deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini
       sed -i 's/^Axis3deadzone=.*/Axis3deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini.351p
