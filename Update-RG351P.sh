@@ -2069,8 +2069,8 @@ if [ ! -f "/home/ark/.config/.update02202025" ]; then
       sed -i 's/^Axis3deadzone=.*/Axis3deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini.351p
       sed -i 's/^Axis4deadzone=.*/Axis4deadzone=0.200001/' /home/ark/.config/gzdoom/gzdoom.ini.351p
 
-    if ls /roms/psp/ppsspp/ISO/*.{cso,CSO,iso,ISO}; then
-      mv /roms/psp/ppsspp/ISO/*.{cso,CSO,iso,ISO} /roms/psp/
+    if [ -d /roms/psp/ppsspp/ISO ]; then
+      mv /roms/psp/ppsspp/ISO/* /roms/psp/.
     fi
 
     printf "\nEnsure 64bit and 32bit SDL2 are still properly linked\n" | tee -a "$LOG_FILE"
