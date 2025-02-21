@@ -652,3 +652,13 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Update XRoar to 1.7.1
 * Update Change Ports SDL tool
 * Add j2me libretro
+
+## February 20, 2025
+* Update RetroArch to v1.20.0
+* Update EmulationStation to v2.13.0
+* Update GZDoom to 4.14.0 (also fixes strange behavior from previous update)
+* Add BBC Micro
+* Add .VERSION and .DEVICE files for PortMaster
+* Replace supposedly bad freej2me-lr.jar and freej2me-plus-lr.jar files
+* Update nes-box and sagabox themes
+* Ensure proper file and folder permissions are set
