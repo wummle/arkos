@@ -6,13 +6,13 @@ LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
 if [ -f "$UPDATE_DONE" ] && [ -f "/home/ark/.config/.kernelupdate02032021" ]; then
-	msgbox "No more updates available.  Check back later."
-	rm -- "$0"
-	exit 187
+  msgbox "No more updates available.  Check back later."
+  rm -- "$0"
+  exit 187
 fi
 
 if [ -f "$LOG_FILE" ]; then
-	sudo rm "$LOG_FILE"
+  sudo rm "$LOG_FILE"
 fi
 
 c_brightness="$(cat /sys/devices/platform/backlight/backlight/backlight/brightness)"
@@ -25,370 +25,370 @@ tail -f $LOG_FILE >> /dev/tty1 &
 
 if [ ! -f "/home/ark/.config/.update07152021" ]; then
 
-	printf "\nRetroArch 1.9.6 and add GX4000\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/07152021/arkosupdate07152021.zip -O /home/ark/arkosupdate07152021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate07152021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate07152021.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.9.6 and add GX4000\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/07152021/arkosupdate07152021.zip -O /home/ark/arkosupdate07152021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate07152021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate07152021.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate07152021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update07152021"
+  touch "/home/ark/.config/.update07152021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update08092021" ]; then
 
-	printf "\nStreet of Rage Remake, EasyRPG\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/08092021/arkosupdate08092021.zip -O /home/ark/arkosupdate08092021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate08092021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate08092021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate08092021.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate08092021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nStreet of Rage Remake, EasyRPG\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/08092021/arkosupdate08092021.zip -O /home/ark/arkosupdate08092021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate08092021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate08092021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate08092021.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate08092021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update08092021"
+  touch "/home/ark/.config/.update08092021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update09052021" ]; then
 
-	printf "\nRetroArch 1.9.8, Correct permissions\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09052021/arkosupdate09052021.zip -O /home/ark/arkosupdate09052021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09052021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate09052021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate09052021.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate09052021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.9.8, Correct permissions\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09052021/arkosupdate09052021.zip -O /home/ark/arkosupdate09052021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09052021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate09052021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate09052021.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09052021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update09052021"
+  touch "/home/ark/.config/.update09052021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update09062021" ]; then
 
-	printf "\nAdd missing cue extension for Playstation, add files for EasyRPG, add liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09062021/arkosupdate09062021.zip -O /home/ark/arkosupdate09062021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate09062021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate09062021.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nAdd missing cue extension for Playstation, add files for EasyRPG, add liblcf, libWildMidi, and libxmp\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09062021/arkosupdate09062021.zip -O /home/ark/arkosupdate09062021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate09062021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate09062021.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09062021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update09062021"
+  touch "/home/ark/.config/.update09062021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update10212021" ]; then
 
-	printf "\nRetroArch 1.9.11, EmulationStation, add Channel F, mess libretro, quicknes, update nes-box theme, update ThemeMaster \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10212021/arkosupdate10212021.zip -O /home/ark/arkosupdate10212021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate10212021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate10212021.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.9.11, EmulationStation, add Channel F, mess libretro, quicknes, update nes-box theme, update ThemeMaster \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10212021/arkosupdate10212021.zip -O /home/ark/arkosupdate10212021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate10212021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate10212021.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate10212021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update10212021"
+  touch "/home/ark/.config/.update10212021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update10262021" ]; then
 
-	printf "\nRetroArch 1.9.11 update to hopefully fix missing assets error\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10262021/arkosupdate10262021.zip -O /home/ark/arkosupdate10262021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10262021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate10262021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate10262021.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate10262021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.9.11 update to hopefully fix missing assets error\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10262021/arkosupdate10262021.zip -O /home/ark/arkosupdate10262021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10262021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate10262021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate10262021.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate10262021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update10262021"
+  touch "/home/ark/.config/.update10262021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update11172021" ]; then
 
-	printf "\nRetroArch 1.9.13, PPSSPP, EmulationStation\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11172021/arkosupdate11172021.zip -O /home/ark/arkosupdate11172021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11172021.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate11172021.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate11172021.zip -d / | tee -a "$LOG_FILE"
-		sudo cp -f -v /usr/bin/emulationstation/emulationstation.351v /usr/bin/emulationstation/emulationstation | tee -a "$LOG_FILE"
-		sudo chmod 777 /usr/bin/emulationstation/emulationstation
-		sudo rm -v /usr/bin/emulationstation/emulationstation.351v | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate11172021.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.9.13, PPSSPP, EmulationStation\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11172021/arkosupdate11172021.zip -O /home/ark/arkosupdate11172021.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11172021.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate11172021.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate11172021.zip -d / | tee -a "$LOG_FILE"
+    sudo cp -f -v /usr/bin/emulationstation/emulationstation.351v /usr/bin/emulationstation/emulationstation | tee -a "$LOG_FILE"
+    sudo chmod 777 /usr/bin/emulationstation/emulationstation
+    sudo rm -v /usr/bin/emulationstation/emulationstation.351v | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate11172021.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nRemove old logs, cache and backup folder files from var folder\n" | tee -a "$LOG_FILE"
-	sudo rm -rfv /var/cache/* | tee -a "$LOG_FILE"
-	sudo rm -rfv /var/backups/* | tee -a "$LOG_FILE"
-	sudo journalctl --vacuum-time=1s | tee -a "$LOG_FILE"
+  printf "\nRemove old logs, cache and backup folder files from var folder\n" | tee -a "$LOG_FILE"
+  sudo rm -rfv /var/cache/* | tee -a "$LOG_FILE"
+  sudo rm -rfv /var/backups/* | tee -a "$LOG_FILE"
+  sudo journalctl --vacuum-time=1s | tee -a "$LOG_FILE"
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update11172021"
+  touch "/home/ark/.config/.update11172021"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update01132022" ]; then
 
-	printf "\nRetroArch 1.9.14, add np2kai libretro, add sameduck libretro, add 32-Bit GPSP GBA core, add megaduck and neshacks\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01132022/arkosupdate01132022.zip -O /home/ark/arkosupdate01132022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate01132022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate01132022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.9.14, add np2kai libretro, add sameduck libretro, add 32-Bit GPSP GBA core, add megaduck and neshacks\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01132022/arkosupdate01132022.zip -O /home/ark/arkosupdate01132022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate01132022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate01132022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate01132022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update01132022"
+  touch "/home/ark/.config/.update01132022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update01142022" ]; then
 
-	printf "\nGX4000 now using retroarch 1.9.6, add megaduck to nes-box theme\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01142022/arkosupdate01142022.zip -O /home/ark/arkosupdate01142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01142022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate01142022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate01142022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate01142022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nGX4000 now using retroarch 1.9.6, add megaduck to nes-box theme\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01142022/arkosupdate01142022.zip -O /home/ark/arkosupdate01142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01142022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate01142022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate01142022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate01142022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update01142022"
+  touch "/home/ark/.config/.update01142022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update02142022" ]; then
 
-	printf "\nUpdate Retroarch, add snes9x2005 libretro, add pcsx_rearmed_peops libretro, add 351Files\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02142022/arkosupdate02142022.zip -O /home/ark/arkosupdate02142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02142022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate02142022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate02142022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate02142022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate Retroarch, add snes9x2005 libretro, add pcsx_rearmed_peops libretro, add 351Files\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02142022/arkosupdate02142022.zip -O /home/ark/arkosupdate02142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02142022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate02142022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate02142022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate02142022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update02142022"
+  touch "/home/ark/.config/.update02142022"
 
 fi
 
 if [ ! -f "/home/ark/.config/.update05142022" ]; then
 
-	printf "\nUpdate extfat drivers, update RetroArch\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/05142022/arkosupdate05142022.zip -O /home/ark/arkosupdate05142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate05142022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate05142022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate05142022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate05142022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
-	sudo apt remove -y exfat-fuse
-	sudo install -m644 -b -D -v /home/ark/exfat.ko.351 /lib/modules/$(uname -r)/kernel/fs/exfat/exfat.ko
-	sudo depmod -a
-	sudo modprobe -v exfat
-	sudo rm -v /home/ark/exfat.ko*
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nUpdate extfat drivers, update RetroArch\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/05142022/arkosupdate05142022.zip -O /home/ark/arkosupdate05142022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate05142022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate05142022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate05142022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate05142022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
+  sudo apt remove -y exfat-fuse
+  sudo install -m644 -b -D -v /home/ark/exfat.ko.351 /lib/modules/$(uname -r)/kernel/fs/exfat/exfat.ko
+  sudo depmod -a
+  sudo modprobe -v exfat
+  sudo rm -v /home/ark/exfat.ko*
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.14.1 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.10.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update05142022"
+  touch "/home/ark/.config/.update05142022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update06062022" ]; then
 
-	printf "\nUpdate SDL2 to 2.0.18.2, add libSDL2_gfx\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/06062022/arkosupdate06062022.zip -O /home/ark/arkosupdate06062022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate06062022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate06062022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate06062022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate06062022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
-	sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.18.2.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 | tee -a "$LOG_FILE"
-	  sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.18.2.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 | tee -a "$LOG_FILE"
-	  sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
-	  sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
+  printf "\nUpdate SDL2 to 2.0.18.2, add libSDL2_gfx\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/06062022/arkosupdate06062022.zip -O /home/ark/arkosupdate06062022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate06062022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate06062022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate06062022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate06062022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
+  sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.18.2.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 | tee -a "$LOG_FILE"
+    sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.18.2.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 | tee -a "$LOG_FILE"
+    sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
+    sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update06062022"
+  touch "/home/ark/.config/.update06062022"
 
 fi
 
 if [ ! -f "/home/ark/.config/.update10022022" ]; then
 
-	printf "\nUpdate retroarch info files to make save states work on rumble cores\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10022022/arkosupdate10022022.zip -O /home/ark/arkosupdate10022022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10022022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate10022022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate10022022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate10022022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate retroarch info files to make save states work on rumble cores\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/10022022/arkosupdate10022022.zip -O /home/ark/arkosupdate10022022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate10022022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate10022022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate10022022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate10022022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update10022022"
+  touch "/home/ark/.config/.update10022022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update12022022" ]; then
 
-	printf "\nAdd GZDoom, fix ecwolf screen resolution\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12022022/arkosupdate12022022.zip -O /home/ark/arkosupdate12022022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12022022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate12022022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate12022022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate12022022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nAdd GZDoom, fix ecwolf screen resolution\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12022022/arkosupdate12022022.zip -O /home/ark/arkosupdate12022022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12022022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate12022022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate12022022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate12022022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
     sudo chown -R ark:ark /opt/ 
     sudo chmod ugo+rwx /opt/gzdoom/*
@@ -409,59 +409,59 @@ if [ ! -f "/home/ark/.config/.update12022022" ]; then
     rm -f -v /opt/gzdoom/gzdoom.351v
     rm -f -v /opt/gzdoom/gzdoom.chi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update12022022"
+  touch "/home/ark/.config/.update12022022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update12092022" ]; then
 
-	printf "\nPPSSPP 1.13.2-1665\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12092022/arkosupdate12092022.zip -O /home/ark/arkosupdate12092022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12092022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate12092022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate12092022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate12092022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nPPSSPP 1.13.2-1665\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12092022/arkosupdate12092022.zip -O /home/ark/arkosupdate12092022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12092022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate12092022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate12092022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate12092022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
     sudo chmod ugo+rwx /opt/ppsspp/PPSSPPSDL
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update12092022"
+  touch "/home/ark/.config/.update12092022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update12102022" ]; then
 
-	printf "\nRetroArch 1.13.0\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12102022/arkosupdate12102022.zip -O /home/ark/arkosupdate12102022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12102022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate12102022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate12102022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate12102022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nRetroArch 1.13.0\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12102022/arkosupdate12102022.zip -O /home/ark/arkosupdate12102022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12102022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate12102022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate12102022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate12102022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
     sudo chmod ugo+rwx /opt/retroarch/bin/*
 
@@ -470,86 +470,86 @@ if [ ! -f "/home/ark/.config/.update12102022" ]; then
     sudo rm -rfv /var/backups/* | tee -a "$LOG_FILE"
     sudo journalctl --vacuum-time=1s
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update12102022"
+  touch "/home/ark/.config/.update12102022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update12202022" ]; then
 
-	printf "\nUpdate PPSSPP to 1.14, update RetroArch to 1.14.0, fix Playstation file extension typo (Credit to K-tec-UK) \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12202022/arkosupdate12202022.zip -O /home/ark/arkosupdate12202022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12202022.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate12202022.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate12202022.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate12202022.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate PPSSPP to 1.14, update RetroArch to 1.14.0, fix Playstation file extension typo (Credit to K-tec-UK) \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12202022/arkosupdate12202022.zip -O /home/ark/arkosupdate12202022.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12202022.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate12202022.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate12202022.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate12202022.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update12202022"
+  touch "/home/ark/.config/.update12202022"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update02022023" ]; then
 
-	printf "\nUpdate PPSSPP to 1.14.4\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02022023/arkosupdate02022023.zip -O /home/ark/arkosupdate02022023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02022023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate02022023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate02022023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate02022023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
-	
+  printf "\nUpdate PPSSPP to 1.14.4\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02022023/arkosupdate02022023.zip -O /home/ark/arkosupdate02022023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02022023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate02022023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate02022023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate02022023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
+
     sudo chmod ugo+rwx /opt/ppsspp/PPSSPPSDL
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.18.2 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.18.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe fork" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update02022023"
+  touch "/home/ark/.config/.update02022023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03262023" ]; then
 
-	printf "\nUpdate SDL2 to 2.0.26.2, RetroArch 1.15.0, Add swanstation PSX core, update mupen64plus, fix GZDoom for SDL2.0.26.2, update scummvm and drastic launchers, update filebrowser CLI\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03262023/arkosupdate03262023.zip -O /home/ark/arkosupdate03262023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03262023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03262023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03262023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03262023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate SDL2 to 2.0.26.2, RetroArch 1.15.0, Add swanstation PSX core, update mupen64plus, fix GZDoom for SDL2.0.26.2, update scummvm and drastic launchers, update filebrowser CLI\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03262023/arkosupdate03262023.zip -O /home/ark/arkosupdate03262023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03262023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03262023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03262023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03262023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
     sudo chown -R ark:ark /opt/ 
     sudo chmod ugo+rwx /opt/gzdoom/*
@@ -560,30 +560,30 @@ if [ ! -f "/home/ark/.config/.update03262023" ]; then
 
     printf "\nInstall and link new SDL 2.0.2600.2 (aka SDL 2.0.26.2)\n" | tee -a "$LOG_FILE"
     sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.2600.2.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 | tee -a "$LOG_FILE"
-	  sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.2600.2.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 | tee -a "$LOG_FILE"
-	  sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
-	  sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
-	  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
-	  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+    sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.2600.2.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 | tee -a "$LOG_FILE"
+    sudo rm -rfv /home/ark/sdl2-64 | tee -a "$LOG_FILE"
+    sudo rm -rfv /home/ark/sdl2-32 | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+    sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
     printf "\nUpdate RetroArch to v1.15.0 for 351p and 351m\n" | tee -a "$LOG_FILE"
-	  cp -fv /opt/retroarch/bin/retroarch32.rk3326.rot /opt/retroarch/bin/retroarch32 | tee -a "$LOG_FILE"
-	  cp -fv /opt/retroarch/bin/retroarch.rk3326.rot /opt/retroarch/bin/retroarch | tee -a "$LOG_FILE"
-	  rm -fv /opt/retroarch/bin/retroarch.* | tee -a "$LOG_FILE"
-	  rm -fv /opt/retroarch/bin/retroarch32.* | tee -a "$LOG_FILE"
+    cp -fv /opt/retroarch/bin/retroarch32.rk3326.rot /opt/retroarch/bin/retroarch32 | tee -a "$LOG_FILE"
+    cp -fv /opt/retroarch/bin/retroarch.rk3326.rot /opt/retroarch/bin/retroarch | tee -a "$LOG_FILE"
+    rm -fv /opt/retroarch/bin/retroarch.* | tee -a "$LOG_FILE"
+    rm -fv /opt/retroarch/bin/retroarch32.* | tee -a "$LOG_FILE"
 
     printf "\nCrate backup of es_systems.cfg in case something goes wrong\n" | tee -a "$LOG_FILE"
     cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update03212023.bak | tee -a "$LOG_FILE"
 
     printf "\nAdd swanstation libreto for psx to ES\n" | tee -a "$LOG_FILE"
     if test -z "$(grep 'swanstation' /usr/local/bin/perfmax | tr -d '\0')"
-		then
+    then
         sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ \$2 == "duckstation" \]\] || \[\[ \$2 == "swanstation" \]\] || \[\[ \$2 == *"uae"* \]\]/' /usr/local/bin/perfmax
-  		  sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ \$2 == "duckstation" \]\] || \[\[ \$2 == "swanstation" \]\] || \[\[ \$2 == *"uae"* \]\]/' /usr/local/bin/perfmax.pic
-  		  sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ \$2 == "duckstation" \]\] || \[\[ \$2 == "swanstation" \]\] || \[\[ \$2 == *"uae"* \]\]/' /usr/local/bin/perfmax.asc
-		fi
+        sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ \$2 == "duckstation" \]\] || \[\[ \$2 == "swanstation" \]\] || \[\[ \$2 == *"uae"* \]\]/' /usr/local/bin/perfmax.pic
+        sudo sed -i '/\[\[ \$2 == "duckstation" \]\]/s//\[\[ \$2 == "duckstation" \]\] || \[\[ \$2 == "swanstation" \]\] || \[\[ \$2 == *"uae"* \]\]/' /usr/local/bin/perfmax.asc
+    fi
 
     if test -z "$(grep 'swanstation' /etc/emulationstation/es_systems.cfg | tr -d '\0')"
     then
@@ -609,83 +609,83 @@ if [ ! -f "/home/ark/.config/.update03262023" ]; then
       sed -i '/swanstation_GPU_Renderer \= /c\swanstation_GPU_Renderer \= "Software"' /home/ark/.config/retroarch/retroarch-core-options.cfg
       sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nswanstation_GPU_Renderer \= "Software"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
     else
-  	  sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nswanstation_GPU_Renderer \= "Software"' /home/ark/.config/retroarch/retroarch-core-options.cfg
-  	  sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nswanstation_GPU_Renderer \= "Software"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
+      sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nswanstation_GPU_Renderer \= "Software"' /home/ark/.config/retroarch/retroarch-core-options.cfg
+      sed -i '/mgba_use_bios \= \"ON\"/c\mgba_use_bios \= \"ON\"\nswanstation_GPU_Renderer \= "Software"' /home/ark/.config/retroarch/retroarch-core-options.cfg.bak
     fi
 
     printf "\nCopy mupen64plus standalone\n" | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus-video-GLideN64.so.rk3326 /opt/mupen64plus/mupen64plus-video-GLideN64.so | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus-video-glide64mk2.so.rk3326 /opt/mupen64plus/mupen64plus-video-glide64mk2.so | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus-video-rice.so.rk3326 /opt/mupen64plus/mupen64plus-video-rice.so | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus-audio-sdl.so.rk3326 /opt/mupen64plus/mupen64plus-audio-sdl.so | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus.rk3326 /opt/mupen64plus/mupen64plus | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/libmupen64plus.so.2.0.0.rk3326 /opt/mupen64plus/libmupen64plus.so.2.0.0 | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus-rsp-hle.so.rk3326 /opt/mupen64plus/mupen64plus-rsp-hle.so | tee -a "$LOG_FILE"
-	  cp -fv /opt/mupen64plus/mupen64plus-input-sdl.so.rk3326 /opt/mupen64plus/mupen64plus-input-sdl.so | tee -a "$LOG_FILE"
-	  rm -fv /opt/mupen64plus/*.rk3326 | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus-video-GLideN64.so.rk3326 /opt/mupen64plus/mupen64plus-video-GLideN64.so | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus-video-glide64mk2.so.rk3326 /opt/mupen64plus/mupen64plus-video-glide64mk2.so | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus-video-rice.so.rk3326 /opt/mupen64plus/mupen64plus-video-rice.so | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus-audio-sdl.so.rk3326 /opt/mupen64plus/mupen64plus-audio-sdl.so | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus.rk3326 /opt/mupen64plus/mupen64plus | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/libmupen64plus.so.2.0.0.rk3326 /opt/mupen64plus/libmupen64plus.so.2.0.0 | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus-rsp-hle.so.rk3326 /opt/mupen64plus/mupen64plus-rsp-hle.so | tee -a "$LOG_FILE"
+    cp -fv /opt/mupen64plus/mupen64plus-input-sdl.so.rk3326 /opt/mupen64plus/mupen64plus-input-sdl.so | tee -a "$LOG_FILE"
+    rm -fv /opt/mupen64plus/*.rk3326 | tee -a "$LOG_FILE"
 
     printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
     sudo chown -R ark:ark /home/ark
     sudo chmod -R 755 /home/ark
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wummle gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03262023"
+  touch "/home/ark/.config/.update03262023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update04052023" ]; then
 
-	printf "\nRevert filebrowser back to working version\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/04052023/arkosupdate04052023.zip -O /home/ark/arkosupdate04052023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate04052023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate04052023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate04052023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate04052023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
-	
+  printf "\nRevert filebrowser back to working version\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/04052023/arkosupdate04052023.zip -O /home/ark/arkosupdate04052023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate04052023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate04052023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate04052023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate04052023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
+
     #Ensure permissions are set correctly on filebrowser executable
     sudo chmod 777 /usr/local/bin/filebrowser
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
-	sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2600.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+  sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2600.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update04052023"
+  touch "/home/ark/.config/.update04052023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update08252023" ]; then
 
-	printf "\nquicknes, fceumm, supafaust, 32bit gpsp, A5200, puae2021, Gearsystem, picodrive, gearcoleco, coolCV, fbneo-neogeocd, Fake08, Arduboy, vic20, microvision, mame2003_plus to arcade, cap32 update, ECWolf update, retroarch 1.15.0 performance, retroarch filters, (Add extensions for C64, Genesis, AmigaCD32, PC98, AmstradCPC and movie player), OpenBOR update, PPSSPP update, (mgba, 3DO and virtualboy default to performance mode), SDL 2.0.28.2\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/08252023/arkosupdate08252023.zip -O /home/ark/arkosupdate08252023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate08252023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate08252023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate08252023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate08252023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nquicknes, fceumm, supafaust, 32bit gpsp, A5200, puae2021, Gearsystem, picodrive, gearcoleco, coolCV, fbneo-neogeocd, Fake08, Arduboy, vic20, microvision, mame2003_plus to arcade, cap32 update, ECWolf update, retroarch 1.15.0 performance, retroarch filters, (Add extensions for C64, Genesis, AmigaCD32, PC98, AmstradCPC and movie player), OpenBOR update, PPSSPP update, (mgba, 3DO and virtualboy default to performance mode), SDL 2.0.28.2\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/08252023/arkosupdate08252023.zip -O /home/ark/arkosupdate08252023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate08252023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate08252023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate08252023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate08252023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
     printf "\n Note: All Added systems in this list have been hardcoded into this archived es_systems.cfg that will replace the old es_systems.cfg.  This is because the scripted injection method severely broke the contents of the file for reasons unknown (this usually doesn't happen), so this process has instead been performed manually to ensure a working configuration. \n" | tee -a "$LOG_FILE"
@@ -705,7 +705,7 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
     printf "\n Add fbneo as optional core for NeoGeo CD \n" | tee -a "$LOG_FILE"
     printf "\n Add coolCV core for colecovision \n" | tee -a "$LOG_FILE"
     printf "\n Add Fake08 emulator for PICO-8 \n" | tee -a "$LOG_FILE"
-	  printf "\n Add widescreen mode support for mupen64plus-glide64mk2 \n" | tee -a "$LOG_FILE"
+    printf "\n Add widescreen mode support for mupen64plus-glide64mk2 \n" | tee -a "$LOG_FILE"
     printf "\n Update cap32 core for Amstrad CPC and GX4000 \n" | tee -a "$LOG_FILE"
 
     printf "\n ---RETROARCH--- \n" | tee -a "$LOG_FILE"
@@ -722,7 +722,7 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
     printf "\n Add cpc and 7z support for Amstrad CPC \n" | tee -a "$LOG_FILE"
 
     printf "\n ---STANDALONE EMULATOR UPDATES--- \n" | tee -a "$LOG_FILE"
-	  printf "\n Add GLideN64 plugin for mupen64plus standalone to ES \n" | tee -a "$LOG_FILE"
+    printf "\n Add GLideN64 plugin for mupen64plus standalone to ES \n" | tee -a "$LOG_FILE"
     printf "\n Update OpenBOR \n" | tee -a "$LOG_FILE"
     printf "\n Update PPSSPPSDL to v1.15.3-26 \n" | tee -a "$LOG_FILE"
 
@@ -795,11 +795,11 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
 
 
     printf "\n Duckstation update \n" | tee -a "$LOG_FILE"
-		if [ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-event-joystick" ]; then
-		  printf "\n Copy correct duckstation binary per device \n" | tee -a "$LOG_FILE"
-		  sudo rm -fv /usr/local/bin/duckstation-nogui.chirgb10 | tee -a "$LOG_FILE"
-		  #sed -i '/Rotate = 1/d' /home/ark/.config/duckstation/settings.ini
-		fi
+    if [ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-event-joystick" ]; then
+      printf "\n Copy correct duckstation binary per device \n" | tee -a "$LOG_FILE"
+      sudo rm -fv /usr/local/bin/duckstation-nogui.chirgb10 | tee -a "$LOG_FILE"
+      #sed -i '/Rotate = 1/d' /home/ark/.config/duckstation/settings.ini
+    fi
 
 
     printf "\n GlideN64 video plugin for mupen64plus \n" | tee -a "$LOG_FILE"
@@ -815,11 +815,11 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
       fi
 
 
-	  printf "\n Add support for 4:3 aspect ratio for mupen64plus standalone rice video plugin \n" | tee -a "$LOG_FILE"
-	    if test -z "$(grep "ResolutionWidth" /home/ark/.config/mupen64plus/mupen64plus.cfg | tr -d '\0')"
-	    then
-	      sed -i "/\[Video-Rice\]/c\\[Video-Rice\]\n\n\# Hack to accomodate widescreen devices (Thanks to AmberElec sources for tip)\nResolutionWidth \= 480" /home/ark/.config/mupen64plus/mupen64plus.cfg
-	    fi
+    printf "\n Add support for 4:3 aspect ratio for mupen64plus standalone rice video plugin \n" | tee -a "$LOG_FILE"
+      if test -z "$(grep "ResolutionWidth" /home/ark/.config/mupen64plus/mupen64plus.cfg | tr -d '\0')"
+      then
+        sed -i "/\[Video-Rice\]/c\\[Video-Rice\]\n\n\# Hack to accomodate widescreen devices (Thanks to AmberElec sources for tip)\nResolutionWidth \= 480" /home/ark/.config/mupen64plus/mupen64plus.cfg
+      fi
 
 
     printf "\n Enable Threaded DSP for 3DO by default \n" | tee -a "$LOG_FILE"
@@ -947,27 +947,27 @@ if [ ! -f "/home/ark/.config/.update08252023" ]; then
       sudo rm -rf /dev/shm/*
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update08252023"
+  touch "/home/ark/.config/.update08252023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update09022023" ]; then
 
-	printf "\n Add Sameboy and GearBoy, Update MESS libretro, Show Last Played, Update NesBox Theme \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09022023/arkosupdate09022023.zip -O /home/ark/arkosupdate09022023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09022023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate09022023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate09022023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate09022023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Add Sameboy and GearBoy, Update MESS libretro, Show Last Played, Update NesBox Theme \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09022023/arkosupdate09022023.zip -O /home/ark/arkosupdate09022023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09022023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate09022023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate09022023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09022023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
     printf "\n ---CORES--- \n" | tee -a "$LOG_FILE"
@@ -998,14 +998,14 @@ if [ ! -f "/home/ark/.config/.update09022023" ]; then
 
     if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep -i '<core>gearboy</core>')"
     then
-		  sed -i '/<core>tgbdual<\/core>/c\\t\t\t  <core>tgbdual<\/core>\n\t\t\t  <core>gearboy<\/core>' /etc/emulationstation/es_systems.cfg
+      sed -i '/<core>tgbdual<\/core>/c\\t\t\t  <core>tgbdual<\/core>\n\t\t\t  <core>gearboy<\/core>' /etc/emulationstation/es_systems.cfg
     fi
 
     sleep 1
 
     if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep -i '<core>sameboy</core>')"
     then
-		  sed -i '/<core>gearboy<\/core>/c\\t\t\t  <core>gearboy<\/core>\n\t\t\t  <core>sameboy<\/core>' /etc/emulationstation/es_systems.cfg
+      sed -i '/<core>gearboy<\/core>/c\\t\t\t  <core>gearboy<\/core>\n\t\t\t  <core>sameboy<\/core>' /etc/emulationstation/es_systems.cfg
     fi
 
 
@@ -1045,60 +1045,59 @@ if [ ! -f "/home/ark/.config/.update09022023" ]; then
       sudo rm -v /bin/emulationstation/*.bak | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
   sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update09022023"
+  touch "/home/ark/.config/.update09022023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update09072023" ]; then
 
-	printf "\n Update EmulationStation \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09072023/arkosupdate09072023.zip -O /home/ark/arkosupdate09072023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09072023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate09072023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate09072023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate09072023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
-	
+  printf "\n Update EmulationStation \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09072023/arkosupdate09072023.zip -O /home/ark/arkosupdate09072023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09072023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate09072023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate09072023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09072023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
     sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
     sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.2800.2 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
     sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
     sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update09072023"
+  touch "/home/ark/.config/.update09072023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update09082023" ]; then
 
-	printf "\n Update ScummVM to v2.8.0, Add Sega Pico \n" | tee -a "$LOG_FILE"
-	sudo rm -rf /dev/shm/*
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09082023/arkosupdate09082023a.zip -O /home/ark/arkosupdate09082023a.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09082023a.zip | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09082023/arkosupdate09082023b.zip -O /home/ark/arkosupdate09082023b.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09082023b.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate09082023a.zip" ] && [ -f "/home/ark/arkosupdate09082023b.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate09082023a.zip -d / | tee -a "$LOG_FILE"
-		sudo unzip -X -o /home/ark/arkosupdate09082023b.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate09082023a.zip | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate09082023b.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Update ScummVM to v2.8.0, Add Sega Pico \n" | tee -a "$LOG_FILE"
+  sudo rm -rf /dev/shm/*
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09082023/arkosupdate09082023a.zip -O /home/ark/arkosupdate09082023a.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09082023a.zip | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09082023/arkosupdate09082023b.zip -O /home/ark/arkosupdate09082023b.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09082023b.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate09082023a.zip" ] && [ -f "/home/ark/arkosupdate09082023b.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate09082023a.zip -d / | tee -a "$LOG_FILE"
+    sudo unzip -X -o /home/ark/arkosupdate09082023b.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09082023a.zip | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09082023b.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
     printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
@@ -1123,27 +1122,27 @@ if [ ! -f "/home/ark/.config/.update09082023" ]; then
       sudo rm -v /bin/emulationstation/*.bak | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update09082023"
+  touch "/home/ark/.config/.update09082023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update11052023" ]; then
 
-	printf "\n Update Retroarch to v1.16.0, update PPSSPP to v1.16.6, update flycast and reicast Dreamcast cores, fix inability to quit Fake08 \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11052023/arkosupdate11052023.zip -O /home/ark/arkosupdate11052023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11052023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate11052023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate11052023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate11052023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Update Retroarch to v1.16.0, update PPSSPP to v1.16.6, update flycast and reicast Dreamcast cores, fix inability to quit Fake08 \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11052023/arkosupdate11052023.zip -O /home/ark/arkosupdate11052023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11052023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate11052023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate11052023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate11052023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
     printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
@@ -1157,27 +1156,27 @@ if [ ! -f "/home/ark/.config/.update11052023" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update11052023"
+  touch "/home/ark/.config/.update11052023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update11222023" ]; then
 
-	printf "\n Add thomson and wasm4, Update NesBox Theme \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11222023/arkosupdate11222023.zip -O /home/ark/arkosupdate11222023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11222023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate11222023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate11222023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate11222023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Add thomson and wasm4, Update NesBox Theme \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11222023/arkosupdate11222023.zip -O /home/ark/arkosupdate11222023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11222023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate11222023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate11222023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate11222023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
     printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
@@ -1191,27 +1190,27 @@ if [ ! -f "/home/ark/.config/.update11222023" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update11222023"
+  touch "/home/ark/.config/.update11222023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update12092023" ]; then
 
-	printf "\n Update PortMaster, Add script in Advanced Options to fix Start+Select not quitting on RG351P+M \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12092023/arkosupdate12092023.zip -O /home/ark/arkosupdate12092023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12092023.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate12092023.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate12092023.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate12092023.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Update PortMaster, Add script in Advanced Options to fix Start+Select not quitting on RG351P+M \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12092023/arkosupdate12092023.zip -O /home/ark/arkosupdate12092023.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12092023.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate12092023.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate12092023.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate12092023.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
 
     printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
@@ -1225,27 +1224,27 @@ if [ ! -f "/home/ark/.config/.update12092023" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update12092023"
+  touch "/home/ark/.config/.update12092023"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update01052024" ]; then
 
-	printf "\n Update GZDoom and add support for .doom files, Add fix for asoundrc (add /dev/asound.conf), Add script in Advanced Options to repair asoundrc \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01052024/arkosupdate01052024.zip -O /home/ark/arkosupdate01052024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01052024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate01052024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate01052024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate01052024.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Update GZDoom and add support for .doom files, Add fix for asoundrc (add /dev/asound.conf), Add script in Advanced Options to repair asoundrc \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01052024/arkosupdate01052024.zip -O /home/ark/arkosupdate01052024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01052024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate01052024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate01052024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate01052024.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/ 
 
@@ -1273,27 +1272,27 @@ if [ ! -f "/home/ark/.config/.update01052024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update01052024"
+  touch "/home/ark/.config/.update01052024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update01292024" ]; then
 
-	printf "\n Install psmisc to add killall command for updated gptokeyb \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01292024/arkosupdate01292024.zip -O /home/ark/arkosupdate01292024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01292024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate01292024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate01292024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate01292024.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Install psmisc to add killall command for updated gptokeyb \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01292024/arkosupdate01292024.zip -O /home/ark/arkosupdate01292024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01292024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate01292024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate01292024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate01292024.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1314,27 +1313,27 @@ if [ ! -f "/home/ark/.config/.update01292024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update01292024"
+  touch "/home/ark/.config/.update01292024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update02262024" ]; then
 
-	printf "\n Fix inability to change controls in gzdoom and lzdoom \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02262024/arkosupdate02262024.zip -O /home/ark/arkosupdate02262024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02262024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate02262024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate02262024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate02262024.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Fix inability to change controls in gzdoom and lzdoom \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/02262024/arkosupdate02262024.zip -O /home/ark/arkosupdate02262024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate02262024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate02262024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate02262024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate02262024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1349,27 +1348,27 @@ if [ ! -f "/home/ark/.config/.update02262024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update02262024"
+  touch "/home/ark/.config/.update02262024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03202024" ]; then
 
-	printf "\n RetroArch v1.17.0, PPSSPP v1.17.1, Critical PortMaster Update, RetroArch Filters, Add Palm mu_libretro core, update 64-Bit uae4arm_libretro, add stark_shaders for Scummvm and files for Scummvm libretro, update NES-Box, add XRoar Tandy coco emu, add Watara SuperVision, add videopac, add and fix file extensions for various systems, set perfmax to GOVERNOR, updated USB DAC control script\n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03202024/arkosupdate03202024.zip -O /home/ark/arkosupdate03202024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03202024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03202024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n RetroArch v1.17.0, PPSSPP v1.17.1, Critical PortMaster Update, RetroArch Filters, Add Palm mu_libretro core, update 64-Bit uae4arm_libretro, add stark_shaders for Scummvm and files for Scummvm libretro, update NES-Box, add XRoar Tandy coco emu, add Watara SuperVision, add videopac, add and fix file extensions for various systems, set perfmax to GOVERNOR, updated USB DAC control script\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03202024/arkosupdate03202024.zip -O /home/ark/arkosupdate03202024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03202024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03202024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03202024.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1429,27 +1428,27 @@ if [ ! -f "/home/ark/.config/.update03202024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03202024"
+  touch "/home/ark/.config/.update03202024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03212024" ]; then
 
-	printf "\n Update gbz35_mod theme \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03212024/arkosupdate03212024.zip -O /home/ark/arkosupdate03212024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03212024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03212024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03212024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03212024.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Update gbz35_mod theme \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03212024/arkosupdate03212024.zip -O /home/ark/arkosupdate03212024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03212024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03212024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03212024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03212024.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1464,27 +1463,27 @@ if [ ! -f "/home/ark/.config/.update03212024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03212024"
+  touch "/home/ark/.config/.update03212024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03232024" ]; then
 
-	printf "\n Add Apple II emulators linapple and shamusworld \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03232024/arkosupdate03232024.zip -O /home/ark/arkosupdate03232024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03232024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03232024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03232024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03232024.zip | tee -a "$LOG_FILE"
-	else 
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Add Apple II emulators linapple and shamusworld \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03232024/arkosupdate03232024.zip -O /home/ark/arkosupdate03232024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03232024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03232024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03232024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03232024.zip | tee -a "$LOG_FILE"
+  else 
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo rm -v /home/ark/add_apple2.txt
 
@@ -1501,27 +1500,27 @@ if [ ! -f "/home/ark/.config/.update03232024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03232024"
+  touch "/home/ark/.config/.update03232024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03282024" ]; then
 
-	printf "\n Add AppleWin for Linux Apple II emulator (with help from christian_haitian) \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03282024/arkosupdate03282024.zip -O /home/ark/arkosupdate03282024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03282024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03282024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03282024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03282024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Add AppleWin for Linux Apple II emulator (with help from christian_haitian) \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03282024/arkosupdate03282024.zip -O /home/ark/arkosupdate03282024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03282024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03282024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03282024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03282024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo rm -v /home/ark/add_apple2.txt
 
@@ -1538,27 +1537,27 @@ if [ ! -f "/home/ark/.config/.update03282024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03282024"
+  touch "/home/ark/.config/.update03282024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03292024" ]; then
 
-	printf "\n Add hatarib_libretro core and set as default core for Atari ST, update apple2 script to default detection of linapple conf files in apple2/conf folder when using an .apple2 file \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03292024/arkosupdate03292024.zip -O /home/ark/arkosupdate03292024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03292024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03292024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03292024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03292024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Add hatarib_libretro core and set as default core for Atari ST, update apple2 script to default detection of linapple conf files in apple2/conf folder when using an .apple2 file \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03292024/arkosupdate03292024.zip -O /home/ark/arkosupdate03292024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03292024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03292024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03292024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03292024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       # Set default options for hatarib_libretro core (Atari ST)
       if test -z "$(cat /home/ark/.config/retroarch/retroarch-core-options.cfg | grep 'hatarib_tos' | tr -d '\0')"
@@ -1607,27 +1606,27 @@ if [ ! -f "/home/ark/.config/.update03292024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03292024"
+  touch "/home/ark/.config/.update03292024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update03302024" ]; then
 
-	printf "\n Update RetroArch to v1.18.0, update apple2 script, add DoubleCherryGB core for gameboy, add stella core for Atari 2600, add geolith core and .neo extension for Neo Geo, update XRoar to 1.5.5 (Tandy CoCO) \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03302024/arkosupdate03302024.zip -O /home/ark/arkosupdate03302024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03302024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate03302024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate03302024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate03302024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\n Update RetroArch to v1.18.0, update apple2 script, add DoubleCherryGB core for gameboy, add stella core for Atari 2600, add geolith core and .neo extension for Neo Geo, update XRoar to 1.5.5 (Tandy CoCO) \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/03302024/arkosupdate03302024.zip -O /home/ark/arkosupdate03302024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate03302024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate03302024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate03302024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate03302024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1642,27 +1641,27 @@ if [ ! -f "/home/ark/.config/.update03302024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.2800.2 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update03302024"
+  touch "/home/ark/.config/.update03302024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update06192024" ]; then
 
-	printf "\nUpdate RetroArch v1.18.0, Update SDl2 to 2.30.3, add script in tools to select SDL2 version used for Ports, Update PortMaster if older than 05-14-2024 stable, add aarch64 libzip.so.4, add aarch64 libvpx.so.5, add aarch64 libiconv.so.2, Update amiga to allow custom config with .user extension and launch amiberry rom-less with .standalone extension \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/06192024/arkosupdate06192024.zip -O /home/ark/arkosupdate06192024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate06192024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate06192024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate06192024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate06192024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate RetroArch v1.18.0, Update SDl2 to 2.30.3, add script in tools to select SDL2 version used for Ports, Update PortMaster if older than 05-14-2024 stable, add aarch64 libzip.so.4, add aarch64 libvpx.so.5, add aarch64 libiconv.so.2, Update amiga to allow custom config with .user extension and launch amiberry rom-less with .standalone extension \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/06192024/arkosupdate06192024.zip -O /home/ark/arkosupdate06192024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate06192024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate06192024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate06192024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate06192024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1697,27 +1696,27 @@ if [ ! -f "/home/ark/.config/.update06192024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.3 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	#sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  #sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe gaming & Slayer366" /usr/share/plymouth/themes/text.plymouth
 
-	touch "/home/ark/.config/.update06192024"
+  touch "/home/ark/.config/.update06192024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update07052024" ]; then
 
-	printf "\nUpdate and fix Change Ports SDL script specifically to accommodate ArkOS on RG351P and RG351M \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/07052024/arkosupdate07052024.zip -O /home/ark/arkosupdate07052024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate07052024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate07052024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate07052024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate07052024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate and fix Change Ports SDL script specifically to accommodate ArkOS on RG351P and RG351M \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/07052024/arkosupdate07052024.zip -O /home/ark/arkosupdate07052024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate07052024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate07052024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate07052024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate07052024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1735,14 +1734,14 @@ if [ ! -f "/home/ark/.config/.update07052024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.3 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update07052024"
+  touch "/home/ark/.config/.update07052024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update09082024" ]; then
 
-	printf "\nInstall and Update Python and Python utilities (already present in July 5th image), Install dos2unix \n" | tee -a "$LOG_FILE"
+  printf "\nInstall and Update Python and Python utilities (already present in July 5th image), Install dos2unix \n" | tee -a "$LOG_FILE"
 
       sudo chown -R ark:ark /opt/
 
@@ -1772,24 +1771,24 @@ if [ ! -f "/home/ark/.config/.update09082024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.3 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update09082024"
+  touch "/home/ark/.config/.update09082024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update11052024" ]; then
 
-	printf "\nUpdate RetroArch v1.19.1, Update SDl2 to 2.30.7, update xroar Tandy CoCo emulator, update script in tools to select SDL2 ver, Update PortMaster if older than 11-05-2024 stable \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11052024/arkosupdate11052024.zip -O /home/ark/arkosupdate11052024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11052024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate11052024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate11052024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate11052024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate RetroArch v1.19.1, Update SDl2 to 2.30.7, update xroar Tandy CoCo emulator, update script in tools to select SDL2 ver, Update PortMaster if older than 11-05-2024 stable \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11052024/arkosupdate11052024.zip -O /home/ark/arkosupdate11052024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11052024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate11052024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate11052024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate11052024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1819,14 +1818,14 @@ if [ ! -f "/home/ark/.config/.update11052024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.7 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update11052024"
+  touch "/home/ark/.config/.update11052024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update11062024" ]; then
 
-	printf "\nSet RetroArch screenshots to save in content directory \n" | tee -a "$LOG_FILE"
+  printf "\nSet RetroArch screenshots to save in content directory \n" | tee -a "$LOG_FILE"
 
       sed -i '/screenshots_in_content_dir \= \"false\"/c\screenshots_in_content_dir \= \"true\"' /home/ark/.config/retroarch/retroarch.cfg
       sed -i '/screenshots_in_content_dir \= \"false\"/c\screenshots_in_content_dir \= \"true\"' /home/ark/.config/retroarch/retroarch.cfg.bak
@@ -1841,24 +1840,24 @@ if [ ! -f "/home/ark/.config/.update11062024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.7 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update11062024"
+  touch "/home/ark/.config/.update11062024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update11072024" ]; then
 
-	printf "\nFix mounting method and permissions for exFAT partition in fstab \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11072024/arkosupdate11072024.zip -O /home/ark/arkosupdate11072024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11072024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate11072024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate11072024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate11072024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nFix mounting method and permissions for exFAT partition in fstab \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/11072024/arkosupdate11072024.zip -O /home/ark/arkosupdate11072024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate11072024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate11072024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate11072024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate11072024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1874,24 +1873,24 @@ if [ ! -f "/home/ark/.config/.update11072024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.7 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update11072024"
+  touch "/home/ark/.config/.update11072024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update12032024" ]; then
 
-	printf "\nUpdate system OSK \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12032024/arkosupdate12032024.zip -O /home/ark/arkosupdate12032024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12032024.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate12032024.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate12032024.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate12032024.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate system OSK \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/12032024/arkosupdate12032024.zip -O /home/ark/arkosupdate12032024.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate12032024.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate12032024.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate12032024.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate12032024.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1907,24 +1906,24 @@ if [ ! -f "/home/ark/.config/.update12032024" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.7 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update12032024"
+  touch "/home/ark/.config/.update12032024"
 
 fi
 
 
 if [ ! -f "/home/ark/.config/.update01252025" ]; then
 
-	printf "\nUpdate GZDoom to 4.13.1, Update PPSSPP to 1.18.1, Update XRoar to 1.7.1, Update SDL to 2.30.10, Update Change Ports SDL tool, Add j2me \n" | tee -a "$LOG_FILE"
-	sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01252025/arkosupdate01252025.zip -O /home/ark/arkosupdate01252025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
-	if [ -f "/home/ark/arkosupdate01252025.zip" ]; then
-		sudo unzip -X -o /home/ark/arkosupdate01252025.zip -d / | tee -a "$LOG_FILE"
-		sudo rm -v /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
-	else
-		printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-		sleep 3
-		echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-		exit 1
-	fi
+  printf "\nUpdate GZDoom to 4.13.1, Update PPSSPP to 1.18.1, Update XRoar to 1.7.1, Update SDL to 2.30.10, Update Change Ports SDL tool, Add j2me \n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/01252025/arkosupdate01252025.zip -O /home/ark/arkosupdate01252025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate01252025.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate01252025.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate01252025.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
 
       sudo chown -R ark:ark /opt/
 
@@ -1934,21 +1933,21 @@ if [ ! -f "/home/ark/.config/.update01252025" ]; then
 
     sudo rm -rf /dev/shm/*
 
-	  printf "\nAdd j2me emulator\n" | tee -a "$LOG_FILE"
-	  if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep 'j2me' | tr -d '\0')"
-	  then
-	    cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update01252025.bak | tee -a "$LOG_FILE"
-	    sed -i -e '/<theme>apple2<\/theme>/{r /home/ark/add_j2me.txt' -e 'd}' /etc/emulationstation/es_systems.cfg
-	  fi
-	  if [ ! -d "/roms/j2me" ]; then
-	    mkdir -v /roms/j2me | tee -a "$LOG_FILE"
-	  fi
-	  sudo rm -fv /home/ark/add_j2me.txt | tee -a "$LOG_FILE"
+    printf "\nAdd j2me emulator\n" | tee -a "$LOG_FILE"
+    if test -z "$(cat /etc/emulationstation/es_systems.cfg | grep 'j2me' | tr -d '\0')"
+    then
+      cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update01252025.bak | tee -a "$LOG_FILE"
+      sed -i -e '/<theme>apple2<\/theme>/{r /home/ark/add_j2me.txt' -e 'd}' /etc/emulationstation/es_systems.cfg
+    fi
+    if [ ! -d "/roms/j2me" ]; then
+      mkdir -v /roms/j2me | tee -a "$LOG_FILE"
+    fi
+    sudo rm -fv /home/ark/add_j2me.txt | tee -a "$LOG_FILE"
 
-	  sudo rm -fv /opt/gzdoom/gzdoom | tee -a "$LOG_FILE"
-	  cp -fv /opt/gzdoom/gzdoom.rk3326 /opt/gzdoom/gzdoom | tee -a "$LOG_FILE"
-	  sleep 0.5
-	  sudo rm -fv /opt/gzdoom/gzdoom.rk3326 | tee -a "$LOG_FILE"
+    sudo rm -fv /opt/gzdoom/gzdoom | tee -a "$LOG_FILE"
+    cp -fv /opt/gzdoom/gzdoom.rk3326 /opt/gzdoom/gzdoom | tee -a "$LOG_FILE"
+    sleep 0.5
+    sudo rm -fv /opt/gzdoom/gzdoom.rk3326 | tee -a "$LOG_FILE"
 
       sudo mv -f -v /home/ark/sdl2-64/libSDL2-2.0.so.0.3000.10.rotated /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 | tee -a "$LOG_FILE"
       sudo mv -f -v /home/ark/sdl2-32/libSDL2-2.0.so.0.3000.10.rotated /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 | tee -a "$LOG_FILE"
@@ -1964,7 +1963,7 @@ if [ ! -f "/home/ark/.config/.update01252025" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	touch "/home/ark/.config/.update01252025"
+  touch "/home/ark/.config/.update01252025"
 
 fi
 
@@ -2090,7 +2089,7 @@ fi
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
-	printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
+  printf "\nEnsure 64bit and 32bit sdl2 is still properly linked\n" | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
@@ -2098,16 +2097,16 @@ if [ ! -f "$UPDATE_DONE-1" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
-	printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
-	sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                              ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
+  printf "\nUpdate boot text to reflect final current version of ArkOS for the 351 P/M \n" | tee -a "$LOG_FILE"
+  sudo sed -i "/title\=/c\title\=ArkOS 351P/M wuMMLe & Slayer366                              ($UPDATE_DATE)" /usr/share/plymouth/themes/text.plymouth
   echo "$UPDATE_DATE" > /home/ark/.config/.VERSION
 
-	touch "$UPDATE_DONE"
-	rm -v -- "$0" | tee -a "$LOG_FILE"
-	printf "\033c" >> /dev/tty1
-	msgbox "Updates have been completed.  System will now restart after you hit the A button to continue.  If the system doesn't restart after pressing A, just restart the system manually."
-	echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
-	sudo reboot
-	exit 187
+  touch "$UPDATE_DONE"
+  rm -v -- "$0" | tee -a "$LOG_FILE"
+  printf "\033c" >> /dev/tty1
+  msgbox "Updates have been completed.  System will now restart after you hit the A button to continue.  If the system doesn't restart after pressing A, just restart the system manually."
+  echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+  sudo reboot
+  exit 187
 
 fi
