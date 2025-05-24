@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-UPDATE_DATE="02202025"
+UPDATE_DATE="05242025"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -1996,6 +1996,7 @@ if [ ! -f "/home/ark/.config/.update02202025" ]; then
       sudo chmod 775 /home/ark/.config/retroarch32/cores/*.so
 
       sudo chmod ug+rw -R /usr/bin/emulationstation/emulationstation/resources
+      sudo chmod ug+rw -R /usr/bin/emulationstation/resources
       sudo chmod 755 /usr/bin/emulationstation/boot_controls
       sudo chmod 777 /usr/bin/emulationstation/emulationstation
       sudo chmod 777 /usr/bin/emulationstation/emulationstation.sh
@@ -2082,6 +2083,69 @@ if [ ! -f "/home/ark/.config/.update02202025" ]; then
       sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
 
   touch "/home/ark/.config/.update02202025"
+
+fi
+
+
+if [ ! -f "/home/ark/.config/.update05242025" ]; then
+
+  printf "\nUpdate GZDoom to 4.14.2 with fixes\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/05242025/arkosupdate05242025.zip -O /home/ark/arkosupdate05242025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate05242025.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate05242025.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate05242025.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate05242025.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
+
+      sudo chown -R ark:ark /opt/
+
+      sudo chown -Rv ark:ark /opt/retroarch
+      sudo chown -v ark:ark /opt/retroarch/bin/*
+      sudo chmod -v ugo+rwx /opt/retroarch/bin/*
+
+      sudo chmod 775 /home/ark/.config/retroarch/cores/*.so
+      sudo chmod 775 /home/ark/.config/retroarch32/cores/*.so
+
+      sudo chmod ug+rw -R /usr/bin/emulationstation/resources
+      sudo chmod 755 /usr/bin/emulationstation/boot_controls
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation
+
+      sudo chmod 777 /opt/gzdoom/*
+      sudo chown -R ark:ark /home/ark/.config/gzdoom/
+      sudo chmod ugo+rwx -R /home/ark/.config/gzdoom/*
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+    sudo rm -rf /dev/shm/*
+
+    if [ -d /roms/psp/ppsspp/ISO ]; then
+      mv /roms/psp/ppsspp/ISO/* /roms/psp/.
+    fi
+
+    printf "\nIf roms2 folder exists at the root on this single memory card device, transfer contents to roms and remove roms2 directory\n" | tee -a "$LOG_FILE"
+      if [ -d /roms2 ]; then
+        sudo rm -rf /roms2/themes
+        sleep 0.5
+        mv /roms2/* /roms/.
+        sleep 0.5
+        sudo rm -rf /roms2
+      fi
+
+    printf "\nEnsure 64bit and 32bit SDL2 are still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+  touch "/home/ark/.config/.update05242025"
 
 fi
 
