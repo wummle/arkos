@@ -662,3 +662,8 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Replace supposedly bad freej2me-lr.jar and freej2me-plus-lr.jar files
 * Update nes-box and sagabox themes
 * Ensure proper file and folder permissions are set
+
+## May 24, 2025
+* Update GZDoom to 4.14.2 with fixes thanks to @Jeod and all who contributed (PortMaster)
+* Ensure proper file and folder permissions are set
+* Transfer contents and remove roms2 folder from root if present (single memory card device does not read from roms2)
