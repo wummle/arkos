@@ -667,3 +667,8 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Update GZDoom to 4.14.2 with fixes thanks to @Jeod and all who contributed (PortMaster)
 * Ensure proper file and folder permissions are set
 * Transfer contents and remove roms2 folder from root if present (single memory card device does not read from roms2)
+
+## September 2, 2025
+* Update Emulationstation - fixed folder icons not displaying correctly
+* Update picodrive core to 2.05-7cbcd41 - Doom CD 32X fusion working with this version
+* Remove Emulationstation theme SagaBox - incompatible with 480x320
