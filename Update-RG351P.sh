@@ -2150,6 +2150,65 @@ if [ ! -f "/home/ark/.config/.update05242025" ]; then
 fi
 
 
+if [ ! -f "/home/ark/.config/.update09022025" ]; then
+
+      # Set permissions to allow emulationstation assets to be overwritten to apply update
+      sudo chmod ugo+rw -R /usr/bin/emulationstation/*
+      sudo chmod 777 /usr/bin/emulationstation/boot_controls
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation*
+
+      # Make backup of old picodrive version (1.97)
+      mv /home/ark/.config/retroarch/cores/picodrive_libretro.so /home/ark/.config/retroarch/cores/picodrive_libretro.bak
+
+      sleep 1
+
+  printf "\nUpdate picodrive libretro to 2.05-7cbcd41, remove es-theme-sagabox, update emulationstation\n" | tee -a "$LOG_FILE"
+  sudo wget --no-check-certificate https://github.com/wummle/arkos/raw/main/09022025/arkosupdate09022025.zip -O /home/ark/arkosupdate09022025.zip -a "$LOG_FILE" || rm -f /home/ark/arkosupdate09022025.zip | tee -a "$LOG_FILE"
+  if [ -f "/home/ark/arkosupdate09022025.zip" ]; then
+    sudo unzip -X -o /home/ark/arkosupdate09022025.zip -d / | tee -a "$LOG_FILE"
+    sudo rm -v /home/ark/arkosupdate09022025.zip | tee -a "$LOG_FILE"
+  else
+    printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
+    sleep 3
+    echo $c_brightness > /sys/devices/platform/backlight/backlight/backlight/brightness
+    exit 1
+  fi
+
+      sudo chown -R ark:ark /opt/
+
+      sudo chown -Rv ark:ark /opt/retroarch
+      sudo chown -v ark:ark /opt/retroarch/bin/*
+      sudo chmod -v ugo+rwx /opt/retroarch/bin/*
+
+      sudo chmod 775 /home/ark/.config/retroarch/cores/*.so
+      sudo chmod 775 /home/ark/.config/retroarch32/cores/*.so
+
+      sudo chmod ugo+rw -R /usr/bin/emulationstation/*
+      sudo chmod 775 /usr/bin/emulationstation/boot_controls
+      sudo chmod 777 /usr/bin/emulationstation/emulationstation*
+
+      # Remove emulationstation theme SagaBox - incompatible with 480x320
+      sudo rm -rf /roms/themes/es-theme-sagabox
+
+    printf "\nMake sure permissions for the ark home directory are set to 755\n" | tee -a "$LOG_FILE"
+      sudo chown -R ark:ark /home/ark
+      sudo chmod -R 755 /home/ark
+
+    sudo rm -rf /dev/shm/*
+
+    printf "\nEnsure 64bit and 32bit SDL2 are still properly linked\n" | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0 /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.3000.10 /usr/lib/aarch64-linux-gnu/libSDL2.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0 /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so | tee -a "$LOG_FILE"
+      sudo ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.3000.10 /usr/lib/arm-linux-gnueabihf/libSDL2.so | tee -a "$LOG_FILE"
+
+  touch "/home/ark/.config/.update09022025"
+
+fi
+
+
 if [ ! -f "$UPDATE_DONE-1" ]; then
 
 
