@@ -687,3 +687,6 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 
 ## September 21, 2026
 * Update LinApple with added OSK
+
+## September 22, 2026
+* Update /usr/local/bin/apple2.sh to accomodate LinApple update
