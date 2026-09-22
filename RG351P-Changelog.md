@@ -684,3 +684,6 @@ It's been reported that this causes major slowdowns with the new ppsspp emulator
 * Update virtualjaguar libretro core to v2.1.0
 * Switch Sufami Turbo default core from SNES9x2010 to SNES9X
 * PPSSPP 1.17.1 with proper low-res scaled menus
+
+## September 21, 2026
+* Update LinApple with added OSK
