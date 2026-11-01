@@ -2415,7 +2415,7 @@ if [ ! -f "/home/ark/.config/.update11012026" ]; then
 
     printf "\nAdd support for .bin, .nib, .nb2, .woz, .hdv, .2mg, .2img, and .gz, to Apple II\n" | tee -a "$LOG_FILE"
     cp -v /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.update11012026.bak | tee -a "$LOG_FILE"
-    sed -i '/<extension>.dsk .DSK .sh .SH .do .DO .po .PO .apple2 .APPLE2 .zip .ZIP/s//<extension><extension>.dsk .DSK .do .DO .bin .BIN .nib .NIB .nb2 .NB2 .woz .WOZ .po .PO .hdv .HDV .2mg .2MG .2img .2IMG .sh .SH .apple2 .APPLE2 .zip .ZIP .gz .GZ/' /etc/emulationstation/es_systems.cfg
+    sed -i '/<extension>.dsk .DSK .sh .SH .do .DO .po .PO .apple2 .APPLE2 .zip .ZIP/s//<extension>.dsk .DSK .do .DO .bin .BIN .nib .NIB .nb2 .NB2 .woz .WOZ .po .PO .hdv .HDV .2mg .2MG .2img .2IMG .sh .SH .apple2 .APPLE2 .zip .ZIP .gz .GZ/' /etc/emulationstation/es_systems.cfg
 
     printf "\nlinapple has OSK embedded now and no longer needs the external osk.png - deleting \n" | tee -a "$LOG_FILE"
     [ -f /opt/linapple/res/osk.png ] && sudo rm -rf /opt/linapple/res
